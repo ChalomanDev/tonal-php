@@ -1,0 +1,32 @@
+{
+    "name": "chaloman/tonal",
+    "description": "Paquete tonal",
+    "type": "library",
+    "require-dev": {
+        "pestphp/pest": "4.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Chaloman\\Tonal\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gonzalo Guevara",
+            "email": "gonzarock@yahoo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
