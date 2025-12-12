@@ -211,6 +211,8 @@ final class Note
 
     /**
      * Alias for transpose()
+     *
+     * @param string|array{0: int, 1: int} $interval
      */
     public static function tr(string $note, string|array $interval): string
     {

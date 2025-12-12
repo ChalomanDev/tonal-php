@@ -34,6 +34,7 @@ final class Core
     /**
      * Transpose a note by an interval.
      *
+     * @param string|array{0: int, 1: int} $intervalName
      * @see PitchDistance::transpose()
      */
     public static function transpose(string $noteName, string|array $intervalName): string
@@ -66,6 +67,7 @@ final class Core
     /**
      * Convert coordinates to interval.
      *
+     * @param array{0: int, 1?: int} $coord
      * @see PitchInterval::coordToInterval()
      */
     public static function coordToInterval(array $coord, bool $forceDescending = false): PitchInterval
@@ -88,6 +90,7 @@ final class Core
     /**
      * Convert coordinates to note.
      *
+     * @param array{0: int, 1?: int} $noteCoord
      * @see PitchNote::coordToNote()
      */
     public static function coordToNote(array $noteCoord): PitchNote
@@ -150,6 +153,7 @@ final class Core
     /**
      * Get coordinates from pitch object.
      *
+     * @return array{0: int}|array{0: int, 1: int}
      * @see Pitch::coordinates()
      */
     public static function coordinates(Pitch $pitch): array

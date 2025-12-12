@@ -14,7 +14,7 @@ final class VoicingDictionaryData
     /**
      * Triads voicings - basic three-note chords in different inversions.
      *
-     * @var array<string, array<string>>
+     * @var array<string, list<string>>
      */
     public const array TRIADS = [
         'M' => ['1P 3M 5P', '3M 5P 8P', '5P 8P 10M'],
@@ -26,7 +26,7 @@ final class VoicingDictionaryData
     /**
      * Left-hand voicings - jazz piano voicings for the left hand.
      *
-     * @var array<string, array<string>>
+     * @var array<string, list<string>>
      */
     public const array LEFTHAND = [
         'm7' => ['3m 5P 7m 9M', '7m 9M 10m 12P'],
@@ -46,7 +46,7 @@ final class VoicingDictionaryData
     /**
      * All voicings - combined triads and lefthand voicings.
      *
-     * @var array<string, array<string>>
+     * @var array<string, list<string>>
      */
     public const array ALL = [
         // Triads

@@ -26,7 +26,7 @@ final class PitchNote
     private static array $cache = [];
 
     /**
-     * @param array{0: int, 1?: int} $coord Note coordinates
+     * @param array{}|array{0: int, 1?: int} $coord Note coordinates (empty for invalid notes)
      */
     public function __construct(
         public readonly bool $empty,

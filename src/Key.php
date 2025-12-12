@@ -261,7 +261,7 @@ final class Key
             return Note::transposeFifths('C', $sig);
         }
 
-        if (is_string($sig) && preg_match('/^b+|#+$/', $sig)) {
+        if (preg_match('/^b+|#+$/', $sig)) {
             return Note::transposeFifths('C', PitchNote::accToAlt($sig));
         }
 

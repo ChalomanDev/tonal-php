@@ -68,7 +68,7 @@ final class PitchInterval
     private static array $cache = [];
 
     /**
-     * @param array{0: int, 1: int} $coord Interval coordinates [fifths, octaves]
+     * @param array{}|array{0: int, 1: int} $coord Interval coordinates [fifths, octaves] (empty for invalid intervals)
      */
     public function __construct(
         public readonly bool $empty,
@@ -312,7 +312,7 @@ final class PitchInterval
             'name' => $this->name,
             'num' => $this->num,
             'q' => $this->q,
-            'type' => $this->type?->value ?? '',
+            'type' => $this->type !== null ? $this->type->value : '',
             'step' => $this->step,
             'alt' => $this->alt,
             'dir' => $this->dir,

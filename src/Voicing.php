@@ -99,7 +99,7 @@ final class Voicing
             // Transpose intervals relative to first interval (e.g., 3m 5P > 1P 3M)
             $firstInterval = $voicingIntervals[0];
             $relativeIntervals = array_map(
-                fn (string $interval): string => Interval::subtract($interval, $firstInterval) ?? '',
+                fn (string $interval): string => Interval::subtract($interval, $firstInterval),
                 $voicingIntervals,
             );
 

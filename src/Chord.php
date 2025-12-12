@@ -148,6 +148,8 @@ final class Chord
 
     /**
      * Alias for get()
+     *
+     * @param string|array{0: string, 1?: string, 2?: string} $src
      */
     public static function chord(string|array $src): ChordObject
     {
@@ -342,7 +344,7 @@ final class Chord
     /**
      * Return the chord notes
      *
-     * @param string|array $chordName Chord name or tokens
+     * @param string|array{0: string, 1?: string, 2?: string} $chordName Chord name or tokens
      * @param string|null $tonic Optional tonic override
      * @return array<string> Notes
      */
@@ -361,7 +363,7 @@ final class Chord
     /**
      * Returns a function to get a note name from the chord degree (1-based)
      *
-     * @param string|array $chordName Chord name
+     * @param string|array{0: string, 1?: string, 2?: string} $chordName Chord name
      * @param string|null $tonic Optional tonic override
      * @return callable(int): string
      *
@@ -381,7 +383,7 @@ final class Chord
     /**
      * Returns a function to get a note name from the chord step (0-based)
      *
-     * @param string|array $chordName Chord name
+     * @param string|array{0: string, 1?: string, 2?: string} $chordName Chord name
      * @param string|null $tonic Optional tonic override
      * @return callable(int): string
      *

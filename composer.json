@@ -4,7 +4,8 @@
     "type": "library",
     "require-dev": {
         "pestphp/pest": "4.x-dev",
-        "laravel/pint": "dev-main"
+        "laravel/pint": "dev-main",
+        "phpstan/phpstan": "2.1.x-dev"
     },
     "license": "MIT",
     "autoload": {
@@ -31,6 +32,8 @@
     },
     "scripts": {
         "lint": "pint",
-        "lint:test": "pint --test"
+        "lint:test": "pint --test",
+        "analyse": "phpstan analyse",
+        "test": "pest"
     }
 }

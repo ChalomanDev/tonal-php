@@ -1,0 +1,13 @@
+parameters:
+    level: 6
+    paths:
+        - src
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        # PHPStan infiere tipos literales muy específicos para constantes de arrays
+        # El tipo real es compatible, pero PHPStan no puede verificarlo
+        - identifier: classConstant.value
+          path: src/Data/VoicingDictionaryData.php
+        - identifier: return.type
+          path: src/VoicingDictionary.php
+          reportUnmatched: false

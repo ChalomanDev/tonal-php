@@ -16,7 +16,7 @@ final class VoicingDictionary
     /**
      * Get the triads dictionary.
      *
-     * @return array<string, array<string>>
+     * @return array<string, list<string>>
      */
     public static function triads(): array
     {
@@ -26,7 +26,7 @@ final class VoicingDictionary
     /**
      * Get the lefthand dictionary.
      *
-     * @return array<string, array<string>>
+     * @return array<string, list<string>>
      */
     public static function lefthand(): array
     {
@@ -36,7 +36,7 @@ final class VoicingDictionary
     /**
      * Get the combined (all) dictionary.
      *
-     * @return array<string, array<string>>
+     * @return array<string, list<string>>
      */
     public static function all(): array
     {
@@ -46,7 +46,7 @@ final class VoicingDictionary
     /**
      * Get the default dictionary (lefthand).
      *
-     * @return array<string, array<string>>
+     * @return array<string, list<string>>
      */
     public static function defaultDictionary(): array
     {
@@ -57,8 +57,8 @@ final class VoicingDictionary
      * Look up voicing patterns for a chord symbol in a dictionary.
      *
      * @param string $symbol The chord symbol to look up
-     * @param array<string, array<string>>|null $dictionary The dictionary to search in
-     * @return array<string>|null The voicing patterns or null if not found
+     * @param array<string, list<string>>|null $dictionary The dictionary to search in
+     * @return list<string>|null The voicing patterns or null if not found
      */
     public static function lookup(string $symbol, ?array $dictionary = null): ?array
     {

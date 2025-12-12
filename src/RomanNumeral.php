@@ -77,15 +77,11 @@ final class RomanNumeral implements PitchLike
             return self::fromPitch($src);
         }
 
-        if ($src instanceof PitchInterval) {
-            // Create a Pitch from interval properties
-            $dir = $src->dir === 1 ? Direction::Ascending : Direction::Descending;
-            $pitch = new Pitch($src->step, $src->alt, $src->oct, $dir);
+        // $src is PitchInterval at this point
+        $dir = $src->dir === 1 ? Direction::Ascending : Direction::Descending;
+        $pitch = new Pitch($src->step, $src->alt, $src->oct, $dir);
 
-            return self::fromPitch($pitch);
-        }
-
-        return self::empty();
+        return self::fromPitch($pitch);
     }
 
     /**

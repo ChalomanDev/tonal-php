@@ -40,7 +40,7 @@ final class Tonal
      * Transpose a note by an interval.
      *
      * @param string $note The note to transpose
-     * @param string|array $interval The interval to transpose by
+     * @param string|array{0: int, 1: int} $interval The interval to transpose by
      * @return string The transposed note
      */
     public static function transpose(string $note, string|array $interval): string

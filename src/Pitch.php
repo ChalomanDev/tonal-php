@@ -103,7 +103,7 @@ final class Pitch
      */
     public static function height(self $pitch): int
     {
-        $dir = $pitch->dir?->value ?? 1;
+        $dir = $pitch->dir !== null ? $pitch->dir->value : 1;
         $oct = $pitch->oct ?? -100;
 
         return $dir * (self::SIZES[$pitch->step] + $pitch->alt + 12 * $oct);
@@ -132,7 +132,7 @@ final class Pitch
     {
         self::initStepsToOcts();
 
-        $dir = $pitch->dir?->value ?? 1;
+        $dir = $pitch->dir !== null ? $pitch->dir->value : 1;
         $f = self::FIFTHS[$pitch->step] + 7 * $pitch->alt;
 
         if ($pitch->oct === null) {
