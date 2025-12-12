@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\ChordObject;
-use Chaloman\Tonal\MajorKey;
-use Chaloman\Tonal\MinorKey;
 use Chaloman\Tonal\PitchInterval;
 use Chaloman\Tonal\PitchNote;
 use Chaloman\Tonal\RomanNumeral;
-use Chaloman\Tonal\ScaleObject;
 use Chaloman\Tonal\Tonal;
+use Chaloman\Tonal\ValueObjects\ChordObject;
+use Chaloman\Tonal\ValueObjects\MajorKey;
+use Chaloman\Tonal\ValueObjects\MinorKey;
+use Chaloman\Tonal\ValueObjects\ScaleObject;
 
 describe('Tonal', function () {
     describe('version', function () {

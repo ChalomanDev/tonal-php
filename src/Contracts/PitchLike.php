@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chaloman\Tonal;
+namespace Chaloman\Tonal\Contracts;
 
 /**
  * Interface for objects that can be converted to a Pitch

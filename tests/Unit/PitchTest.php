@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\Direction;
+use Chaloman\Tonal\Enums\Direction;
 use Chaloman\Tonal\Pitch;
 
 // Pitch classes (sin octava)

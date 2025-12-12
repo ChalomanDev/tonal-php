@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\ChordQuality;
 use Chaloman\Tonal\ChordType;
 use Chaloman\Tonal\Data\ChordTypeData;
+use Chaloman\Tonal\Enums\ChordQuality;
 use Chaloman\Tonal\PitchInterval;
 
 beforeEach(function () {

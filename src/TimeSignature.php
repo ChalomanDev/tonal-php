@@ -4,16 +4,7 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
-/**
- * Time signature type
- */
-enum TimeSignatureType: string
-{
-    case Simple = 'simple';
-    case Compound = 'compound';
-    case Irregular = 'irregular';
-    case Irrational = 'irrational';
-}
+use Chaloman\Tonal\Enums\TimeSignatureType;
 
 /**
  * Time signature representation

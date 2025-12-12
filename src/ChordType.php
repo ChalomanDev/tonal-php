@@ -5,18 +5,7 @@ declare(strict_types=1);
 namespace Chaloman\Tonal;
 
 use Chaloman\Tonal\Data\ChordTypeData;
-
-/**
- * Chord quality
- */
-enum ChordQuality: string
-{
-    case Major = 'Major';
-    case Minor = 'Minor';
-    case Augmented = 'Augmented';
-    case Diminished = 'Diminished';
-    case Unknown = 'Unknown';
-}
+use Chaloman\Tonal\Enums\ChordQuality;
 
 /**
  * Chord type definition and dictionary

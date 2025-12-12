@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
+use Chaloman\Tonal\Contracts\PitchLike;
+
 /**
  * Core module that provides essential music theory functions.
  *

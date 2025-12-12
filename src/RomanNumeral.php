@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
+use Chaloman\Tonal\Contracts\PitchLike;
+use Chaloman\Tonal\Enums\Direction;
+
 /**
  * Roman numeral representation for chord progressions
  */

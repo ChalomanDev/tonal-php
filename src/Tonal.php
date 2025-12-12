@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
+use Chaloman\Tonal\ValueObjects\ChordObject;
+use Chaloman\Tonal\ValueObjects\MajorKey;
+use Chaloman\Tonal\ValueObjects\MinorKey;
+use Chaloman\Tonal\ValueObjects\ScaleObject;
+
 /**
  * Tonal - Main aggregator class for the Tonal PHP library.
  *

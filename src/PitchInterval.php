@@ -4,32 +4,9 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
-/**
- * Interval quality
- */
-enum IntervalQuality: string
-{
-    case Diminished4 = 'dddd';
-    case Diminished3 = 'ddd';
-    case Diminished2 = 'dd';
-    case Diminished = 'd';
-    case Minor = 'm';
-    case Major = 'M';
-    case Perfect = 'P';
-    case Augmented = 'A';
-    case Augmented2 = 'AA';
-    case Augmented3 = 'AAA';
-    case Augmented4 = 'AAAA';
-}
-
-/**
- * Interval type
- */
-enum IntervalType: string
-{
-    case Perfectable = 'perfectable';
-    case Majorable = 'majorable';
-}
+use Chaloman\Tonal\Contracts\PitchLike;
+use Chaloman\Tonal\Enums\Direction;
+use Chaloman\Tonal\Enums\IntervalType;
 
 /**
  * Musical interval representation

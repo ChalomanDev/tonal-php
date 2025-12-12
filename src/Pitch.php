@@ -4,22 +4,8 @@ declare(strict_types=1);
 
 namespace Chaloman\Tonal;
 
-/**
- * Direction type for intervals: 1 = ascending, -1 = descending
- */
-enum Direction: int
-{
-    case Ascending = 1;
-    case Descending = -1;
-}
-
-/**
- * Interface for named pitch objects
- */
-interface NamedPitchInterface
-{
-    public function getName(): string;
-}
+use Chaloman\Tonal\Contracts\NamedPitchInterface;
+use Chaloman\Tonal\Enums\Direction;
 
 /**
  * Pitch properties
