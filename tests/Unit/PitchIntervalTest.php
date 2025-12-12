@@ -9,8 +9,8 @@ use Chaloman\Tonal\PitchInterval;
 describe('PitchInterval', function () {
 
     test('tokenize', function () {
-        expect(PitchInterval::tokenizeInterval('-2M'))->toBe(['-2', 'M']);
-        expect(PitchInterval::tokenizeInterval('M-3'))->toBe(['-3', 'M']);
+        expect(PitchInterval::tokenizeInterval('-2M'))->toBe(['-2', 'M'])
+            ->and(PitchInterval::tokenizeInterval('M-3'))->toBe(['-3', 'M']);
     });
 
     describe('interval from string', function () {
@@ -18,19 +18,19 @@ describe('PitchInterval', function () {
         test('has all properties', function () {
             $interval = PitchInterval::interval('4d');
 
-            expect($interval->empty)->toBeFalse();
-            expect($interval->name)->toBe('4d');
-            expect($interval->num)->toBe(4);
-            expect($interval->q)->toBe('d');
-            expect($interval->type->value)->toBe('perfectable');
-            expect($interval->alt)->toBe(-1);
-            expect($interval->chroma)->toBe(4);
-            expect($interval->dir)->toBe(1);
-            expect($interval->coord)->toBe([-8, 5]);
-            expect($interval->oct)->toBe(0);
-            expect($interval->semitones)->toBe(4);
-            expect($interval->simple)->toBe(4);
-            expect($interval->step)->toBe(3);
+            expect($interval->empty)->toBeFalse()
+                ->and($interval->name)->toBe('4d')
+                ->and($interval->num)->toBe(4)
+                ->and($interval->q)->toBe('d')
+                ->and($interval->type->value)->toBe('perfectable')
+                ->and($interval->alt)->toBe(-1)
+                ->and($interval->chroma)->toBe(4)
+                ->and($interval->dir)->toBe(1)
+                ->and($interval->coord)->toBe([-8, 5])
+                ->and($interval->oct)->toBe(0)
+                ->and($interval->semitones)->toBe(4)
+                ->and($interval->simple)->toBe(4)
+                ->and($interval->step)->toBe(3);
         });
 
         test('accepts interval as parameter', function () {
@@ -47,12 +47,12 @@ describe('PitchInterval', function () {
                 explode(' ', $src),
             ));
 
-            expect($names('1P 2M 3M 4P 5P 6M 7M'))->toBe('1P 2M 3M 4P 5P 6M 7M');
-            expect($names('P1 M2 M3 P4 P5 M6 M7'))->toBe('1P 2M 3M 4P 5P 6M 7M');
-            expect($names('-1P -2M -3M -4P -5P -6M -7M'))->toBe('-1P -2M -3M -4P -5P -6M -7M');
-            expect($names('P-1 M-2 M-3 P-4 P-5 M-6 M-7'))->toBe('-1P -2M -3M -4P -5P -6M -7M');
-            expect(PitchInterval::interval('not-an-interval')->empty)->toBeTrue();
-            expect(PitchInterval::interval('2P')->empty)->toBeTrue();
+            expect($names('1P 2M 3M 4P 5P 6M 7M'))->toBe('1P 2M 3M 4P 5P 6M 7M')
+                ->and($names('P1 M2 M3 P4 P5 M6 M7'))->toBe('1P 2M 3M 4P 5P 6M 7M')
+                ->and($names('-1P -2M -3M -4P -5P -6M -7M'))->toBe('-1P -2M -3M -4P -5P -6M -7M')
+                ->and($names('P-1 M-2 M-3 P-4 P-5 M-6 M-7'))->toBe('-1P -2M -3M -4P -5P -6M -7M')
+                ->and(PitchInterval::interval('not-an-interval')->empty)->toBeTrue()
+                ->and(PitchInterval::interval('2P')->empty)->toBeTrue();
         });
 
         test('q', function () {
@@ -61,8 +61,8 @@ describe('PitchInterval', function () {
                 explode(' ', $str),
             );
 
-            expect($q('1dd 1d 1P 1A 1AA'))->toBe(['dd', 'd', 'P', 'A', 'AA']);
-            expect($q('2dd 2d 2m 2M 2A 2AA'))->toBe(['dd', 'd', 'm', 'M', 'A', 'AA']);
+            expect($q('1dd 1d 1P 1A 1AA'))->toBe(['dd', 'd', 'P', 'A', 'AA'])
+                ->and($q('2dd 2d 2m 2M 2A 2AA'))->toBe(['dd', 'd', 'm', 'M', 'A', 'AA']);
         });
 
         test('alt', function () {
@@ -80,9 +80,9 @@ describe('PitchInterval', function () {
                 explode(' ', $str),
             );
 
-            expect($simple('1P 2M 3M 4P'))->toBe([1, 2, 3, 4]);
-            expect($simple('8P 9M 10M 11P'))->toBe([8, 2, 3, 4]);
-            expect($simple('-8P -9M -10M -11P'))->toBe([-8, -2, -3, -4]);
+            expect($simple('1P 2M 3M 4P'))->toBe([1, 2, 3, 4])
+                ->and($simple('8P 9M 10M 11P'))->toBe([8, 2, 3, 4])
+                ->and($simple('-8P -9M -10M -11P'))->toBe([-8, -2, -3, -4]);
         });
     });
 

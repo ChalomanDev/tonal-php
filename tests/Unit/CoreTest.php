@@ -7,26 +7,26 @@ use Chaloman\Tonal\Pitch;
 
 describe('Core', function () {
     test('fillStr repeats a character', function () {
-        expect(Core::fillStr('#', 3))->toBe('###');
-        expect(Core::fillStr('b', 2))->toBe('bb');
-        expect(Core::fillStr('x', 0))->toBe('');
-        expect(Core::fillStr('#', -3))->toBe('###'); // Uses absolute value
+        expect(Core::fillStr('#', 3))->toBe('###')
+            ->and(Core::fillStr('b', 2))->toBe('bb')
+            ->and(Core::fillStr('x', 0))->toBe('')
+            ->and(Core::fillStr('#', -3))->toBe('###'); // Uses absolute value
     });
 
     test('transpose delegates to PitchDistance', function () {
-        expect(Core::transpose('C4', '3M'))->toBe('E4');
-        expect(Core::transpose('D', '5P'))->toBe('A');
+        expect(Core::transpose('C4', '3M'))->toBe('E4')
+            ->and(Core::transpose('D', '5P'))->toBe('A');
     });
 
     test('distance delegates to PitchDistance', function () {
-        expect(Core::distance('C4', 'E4'))->toBe('3M');
-        expect(Core::distance('C', 'G'))->toBe('5P');
+        expect(Core::distance('C4', 'E4'))->toBe('3M')
+            ->and(Core::distance('C', 'G'))->toBe('5P');
     });
 
     test('interval delegates to PitchInterval', function () {
         $ivl = Core::interval('3M');
-        expect($ivl->name)->toBe('3M');
-        expect($ivl->semitones)->toBe(4);
+        expect($ivl->name)->toBe('3M')
+            ->and($ivl->semitones)->toBe(4);
     });
 
     test('coordToInterval delegates to PitchInterval', function () {
@@ -36,8 +36,8 @@ describe('Core', function () {
 
     test('note delegates to PitchNote', function () {
         $note = Core::note('C4');
-        expect($note->name)->toBe('C4');
-        expect($note->midi)->toBe(60);
+        expect($note->name)->toBe('C4')
+            ->and($note->midi)->toBe(60);
     });
 
     test('coordToNote delegates to PitchNote', function () {
@@ -52,9 +52,9 @@ describe('Core', function () {
 
     test('isPitch checks for Pitch instance', function () {
         $pitch = new Pitch(0, 0, 4);
-        expect(Core::isPitch($pitch))->toBeTrue();
-        expect(Core::isPitch('C4'))->toBeFalse();
-        expect(Core::isPitch(null))->toBeFalse();
+        expect(Core::isPitch($pitch))->toBeTrue()
+            ->and(Core::isPitch('C4'))->toBeFalse()
+            ->and(Core::isPitch(null))->toBeFalse();
     });
 
     test('chroma calculates pitch chroma', function () {

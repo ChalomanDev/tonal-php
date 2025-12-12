@@ -9,24 +9,24 @@ describe('Mode', function () {
         test('properties', function () {
             $mode = Mode::get('ionian');
 
-            expect($mode->empty)->toBeFalse();
-            expect($mode->modeNum)->toBe(0);
-            expect($mode->name)->toBe('ionian');
-            expect($mode->setNum)->toBe(2773);
-            expect($mode->chroma)->toBe('101011010101');
-            expect($mode->normalized)->toBe('101011010101');
-            expect($mode->alt)->toBe(0);
-            expect($mode->triad)->toBe('');
-            expect($mode->seventh)->toBe('Maj7');
-            expect($mode->aliases)->toBe(['major']);
-            expect($mode->intervals)->toBe(['1P', '2M', '3M', '4P', '5P', '6M', '7M']);
+            expect($mode->empty)->toBeFalse()
+                ->and($mode->modeNum)->toBe(0)
+                ->and($mode->name)->toBe('ionian')
+                ->and($mode->setNum)->toBe(2773)
+                ->and($mode->chroma)->toBe('101011010101')
+                ->and($mode->normalized)->toBe('101011010101')
+                ->and($mode->alt)->toBe(0)
+                ->and($mode->triad)->toBe('')
+                ->and($mode->seventh)->toBe('Maj7')
+                ->and($mode->aliases)->toBe(['major'])
+                ->and($mode->intervals)->toBe(['1P', '2M', '3M', '4P', '5P', '6M', '7M'])
+                ->and(Mode::get('major')->name)->toBe(Mode::get('ionian')->name);
 
-            expect(Mode::get('major')->name)->toBe(Mode::get('ionian')->name);
         });
 
         test('accept ModeType as parameter', function () {
-            expect(Mode::get(Mode::get('major'))->name)->toBe(Mode::get('major')->name);
-            expect(Mode::get(['name' => 'Major'])->name)->toBe(Mode::get('major')->name);
+            expect(Mode::get(Mode::get('major'))->name)->toBe(Mode::get('major')->name)
+                ->and(Mode::get(['name' => 'Major'])->name)->toBe(Mode::get('major')->name);
         });
 
         test('name is case independent', function () {
@@ -54,8 +54,8 @@ describe('Mode', function () {
         });
 
         test('aliases', function () {
-            expect(Mode::get('major')->name)->toBe(Mode::get('ionian')->name);
-            expect(Mode::get('minor')->name)->toBe(Mode::get('aeolian')->name);
+            expect(Mode::get('major')->name)->toBe(Mode::get('ionian')->name)
+                ->and(Mode::get('minor')->name)->toBe(Mode::get('aeolian')->name);
         });
     });
 
@@ -72,30 +72,30 @@ describe('Mode', function () {
     });
 
     test('notes', function () {
-        expect(implode(' ', Mode::notes('major', 'C')))->toBe('C D E F G A B');
-        expect(implode(' ', Mode::notes('dorian', 'C')))->toBe('C D Eb F G A Bb');
-        expect(implode(' ', Mode::notes('dorian', 'F')))->toBe('F G Ab Bb C D Eb');
-        expect(implode(' ', Mode::notes('lydian', 'F')))->toBe('F G A B C D E');
-        expect(implode(' ', Mode::notes('anything', 'F')))->toBe('');
+        expect(implode(' ', Mode::notes('major', 'C')))->toBe('C D E F G A B')
+            ->and(implode(' ', Mode::notes('dorian', 'C')))->toBe('C D Eb F G A Bb')
+            ->and(implode(' ', Mode::notes('dorian', 'F')))->toBe('F G Ab Bb C D Eb')
+            ->and(implode(' ', Mode::notes('lydian', 'F')))->toBe('F G A B C D E')
+            ->and(implode(' ', Mode::notes('anything', 'F')))->toBe('');
     });
 
     test('triads', function () {
-        expect(implode(' ', Mode::triads('minor', 'C')))->toBe('Cm Ddim Eb Fm Gm Ab Bb');
-        expect(implode(' ', Mode::triads('mixolydian', 'Bb')))->toBe('Bb Cm Ddim Eb Fm Gm Ab');
+        expect(implode(' ', Mode::triads('minor', 'C')))->toBe('Cm Ddim Eb Fm Gm Ab Bb')
+            ->and(implode(' ', Mode::triads('mixolydian', 'Bb')))->toBe('Bb Cm Ddim Eb Fm Gm Ab');
     });
 
     test('seventhChords', function () {
         expect(implode(' ', Mode::seventhChords('major', 'C#')))
-            ->toBe('C#Maj7 D#m7 E#m7 F#Maj7 G#7 A#m7 B#m7b5');
-
-        expect(implode(' ', Mode::seventhChords('dorian', 'G')))
+            ->toBe('C#Maj7 D#m7 E#m7 F#Maj7 G#7 A#m7 B#m7b5')
+            ->and(implode(' ', Mode::seventhChords('dorian', 'G')))
             ->toBe('Gm7 Am7 BbMaj7 C7 Dm7 Em7b5 FMaj7');
+
     });
 
     test('relativeTonic', function () {
-        expect(Mode::relativeTonic('major', 'minor', 'A'))->toBe('C');
-        expect(Mode::relativeTonic('major', 'minor', 'D'))->toBe('F');
-        expect(Mode::relativeTonic('minor', 'dorian', 'D'))->toBe('A');
-        expect(Mode::relativeTonic('nonsense', 'dorian', 'D'))->toBe('');
+        expect(Mode::relativeTonic('major', 'minor', 'A'))->toBe('C')
+            ->and(Mode::relativeTonic('major', 'minor', 'D'))->toBe('F')
+            ->and(Mode::relativeTonic('minor', 'dorian', 'D'))->toBe('A')
+            ->and(Mode::relativeTonic('nonsense', 'dorian', 'D'))->toBe('');
     });
 });

@@ -8,11 +8,11 @@ use Chaloman\Tonal\Scale;
 
 describe('Key', function () {
     test('majorTonicFromKeySignature', function () {
-        expect(Key::majorTonicFromKeySignature('###'))->toBe('A');
-        expect(Key::majorTonicFromKeySignature(3))->toBe('A');
-        expect(Key::majorTonicFromKeySignature('b'))->toBe('F');
-        expect(Key::majorTonicFromKeySignature('bb'))->toBe('Bb');
-        expect(Key::majorTonicFromKeySignature('other'))->toBeNull();
+        expect(Key::majorTonicFromKeySignature('###'))->toBe('A')
+            ->and(Key::majorTonicFromKeySignature(3))->toBe('A')
+            ->and(Key::majorTonicFromKeySignature('b'))->toBe('F')
+            ->and(Key::majorTonicFromKeySignature('bb'))->toBe('Bb')
+            ->and(Key::majorTonicFromKeySignature('other'))->toBeNull();
     });
 
     test('major keySignature', function () {
@@ -84,10 +84,10 @@ describe('Key', function () {
     });
 
     test('octaves are discarded', function () {
-        expect(implode(' ', Key::majorKey('b4')->scale))->toBe('B C# D# E F# G# A#');
-        expect(implode(' ', Key::majorKey('g4')->chords))->toBe('Gmaj7 Am7 Bm7 Cmaj7 D7 Em7 F#m7b5');
-        expect(implode(' ', Key::minorKey('C4')->melodic->scale))->toBe('C D Eb F G A B');
-        expect(implode(' ', Key::minorKey('C4')->melodic->chords))->toBe('Cm6 Dm7 Eb+maj7 F7 G7 Am7b5 Bm7b5');
+        expect(implode(' ', Key::majorKey('b4')->scale))->toBe('B C# D# E F# G# A#')
+            ->and(implode(' ', Key::majorKey('g4')->chords))->toBe('Gmaj7 Am7 Bm7 Cmaj7 D7 Em7 F#m7b5')
+            ->and(implode(' ', Key::minorKey('C4')->melodic->scale))->toBe('C D Eb F G A B')
+            ->and(implode(' ', Key::minorKey('C4')->melodic->chords))->toBe('Cm6 Dm7 Eb+maj7 F7 G7 Am7b5 Bm7b5');
     });
 
     test('valid chord names', function () {
@@ -116,15 +116,15 @@ describe('Key', function () {
 
     test('C major key', function () {
         $key = Key::majorKey('C');
-        expect($key->type)->toBe('major');
-        expect($key->tonic)->toBe('C');
-        expect($key->alteration)->toBe(0);
-        expect($key->keySignature)->toBe('');
-        expect($key->minorRelative)->toBe('A');
-        expect($key->scale)->toBe(['C', 'D', 'E', 'F', 'G', 'A', 'B']);
-        expect($key->grades)->toBe(['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']);
-        expect($key->intervals)->toBe(['1P', '2M', '3M', '4P', '5P', '6M', '7M']);
-        expect($key->chords)->toBe(['Cmaj7', 'Dm7', 'Em7', 'Fmaj7', 'G7', 'Am7', 'Bm7b5']);
+        expect($key->type)->toBe('major')
+            ->and($key->tonic)->toBe('C')
+            ->and($key->alteration)->toBe(0)
+            ->and($key->keySignature)->toBe('')
+            ->and($key->minorRelative)->toBe('A')
+            ->and($key->scale)->toBe(['C', 'D', 'E', 'F', 'G', 'A', 'B'])
+            ->and($key->grades)->toBe(['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'])
+            ->and($key->intervals)->toBe(['1P', '2M', '3M', '4P', '5P', '6M', '7M'])
+            ->and($key->chords)->toBe(['Cmaj7', 'Dm7', 'Em7', 'Fmaj7', 'G7', 'Am7', 'Bm7b5']);
     });
 
     test('C major chords', function () {
@@ -136,16 +136,16 @@ describe('Key', function () {
                 break;
             }
         }
-        expect($em7)->not->toBeNull();
-        expect($em7->name)->toBe('Em7');
-        expect($em7->roles)->toBe(['T', 'ii/II']);
+        expect($em7)->not->toBeNull()
+            ->and($em7->name)->toBe('Em7')
+            ->and($em7->roles)->toBe(['T', 'ii/II']);
     });
 
     test('empty major key', function () {
         $key = Key::majorKey('');
-        expect($key->type)->toBe('major');
-        expect($key->tonic)->toBe('');
-        expect($key->scale)->toBe([]);
+        expect($key->type)->toBe('major')
+            ->and($key->tonic)->toBe('')
+            ->and($key->scale)->toBe([]);
     });
 
     test('C minor key', function () {
@@ -171,30 +171,30 @@ describe('Key', function () {
 
     test('empty minor key', function () {
         $key = Key::minorKey('nothing');
-        expect($key->type)->toBe('minor');
-        expect($key->tonic)->toBe('');
-        expect($key->natural->scale)->toBe([]);
+        expect($key->type)->toBe('minor')
+            ->and($key->tonic)->toBe('')
+            ->and($key->natural->scale)->toBe([]);
     });
 
     test('A major key', function () {
         $key = Key::majorKey('A');
-        expect($key->alteration)->toBe(3);
-        expect($key->keySignature)->toBe('###');
-        expect($key->minorRelative)->toBe('F#');
-        expect($key->scale)->toBe(['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']);
+        expect($key->alteration)->toBe(3)
+            ->and($key->keySignature)->toBe('###')
+            ->and($key->minorRelative)->toBe('F#')
+            ->and($key->scale)->toBe(['A', 'B', 'C#', 'D', 'E', 'F#', 'G#']);
     });
 
     test('Bb major key', function () {
         $key = Key::majorKey('Bb');
-        expect($key->alteration)->toBe(-2);
-        expect($key->keySignature)->toBe('bb');
-        expect($key->scale)->toBe(['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']);
+        expect($key->alteration)->toBe(-2)
+            ->and($key->keySignature)->toBe('bb')
+            ->and($key->scale)->toBe(['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']);
     });
 
     test('E major key', function () {
         $key = Key::majorKey('E');
-        expect($key->alteration)->toBe(4);
-        expect($key->keySignature)->toBe('####');
-        expect($key->scale)->toBe(['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']);
+        expect($key->alteration)->toBe(4)
+            ->and($key->keySignature)->toBe('####')
+            ->and($key->scale)->toBe(['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#']);
     });
 });

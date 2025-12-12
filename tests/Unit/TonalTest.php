@@ -20,59 +20,59 @@ describe('Tonal', function () {
 
     describe('Core functions', function () {
         test('transpose', function () {
-            expect(Tonal::transpose('C4', '3M'))->toBe('E4');
-            expect(Tonal::transpose('D4', '5P'))->toBe('A4');
-            expect(Tonal::transpose('G', '2M'))->toBe('A');
+            expect(Tonal::transpose('C4', '3M'))->toBe('E4')
+                ->and(Tonal::transpose('D4', '5P'))->toBe('A4')
+                ->and(Tonal::transpose('G', '2M'))->toBe('A');
         });
 
         test('distance', function () {
-            expect(Tonal::distance('C4', 'E4'))->toBe('3M');
-            expect(Tonal::distance('C4', 'G4'))->toBe('5P');
-            expect(Tonal::distance('C', 'D'))->toBe('2M');
+            expect(Tonal::distance('C4', 'E4'))->toBe('3M')
+                ->and(Tonal::distance('C4', 'G4'))->toBe('5P')
+                ->and(Tonal::distance('C', 'D'))->toBe('2M');
         });
     });
 
     describe('note()', function () {
         test('returns PitchNote object', function () {
             $note = Tonal::note('C4');
-            expect($note)->toBeInstanceOf(PitchNote::class);
-            expect($note->name)->toBe('C4');
-            expect($note->midi)->toBe(60);
+            expect($note)->toBeInstanceOf(PitchNote::class)
+                ->and($note->name)->toBe('C4')
+                ->and($note->midi)->toBe(60);
         });
 
         test('handles sharps and flats', function () {
-            expect(Tonal::note('F#4')->chroma)->toBe(6);
-            expect(Tonal::note('Bb3')->chroma)->toBe(10);
+            expect(Tonal::note('F#4')->chroma)->toBe(6)
+                ->and(Tonal::note('Bb3')->chroma)->toBe(10);
         });
     });
 
     describe('interval()', function () {
         test('returns PitchInterval object', function () {
             $interval = Tonal::interval('5P');
-            expect($interval)->toBeInstanceOf(PitchInterval::class);
-            expect($interval->name)->toBe('5P');
-            expect($interval->semitones)->toBe(7);
+            expect($interval)->toBeInstanceOf(PitchInterval::class)
+                ->and($interval->name)->toBe('5P')
+                ->and($interval->semitones)->toBe(7);
         });
 
         test('handles complex intervals', function () {
-            expect(Tonal::interval('9M')->semitones)->toBe(14);
-            expect(Tonal::interval('3m')->semitones)->toBe(3);
+            expect(Tonal::interval('9M')->semitones)->toBe(14)
+                ->and(Tonal::interval('3m')->semitones)->toBe(3);
         });
     });
 
     describe('chord()', function () {
         test('returns ChordObject', function () {
             $chord = Tonal::chord('Cmaj7');
-            expect($chord)->toBeInstanceOf(ChordObject::class);
-            expect($chord->name)->toBe('C major seventh');
-            expect($chord->symbol)->toBe('Cmaj7');
+            expect($chord)->toBeInstanceOf(ChordObject::class)
+                ->and($chord->name)->toBe('C major seventh')
+                ->and($chord->symbol)->toBe('Cmaj7');
         });
 
         test('handles chord inversions', function () {
             $chord = Tonal::chord('C/E');
-            expect($chord->tonic)->toBe('C');
-            expect($chord->bass)->toBe('E');
-            expect($chord->root)->toBe('E');
+            expect($chord->tonic)->toBe('C')
+                ->and($chord->bass)->toBe('E')
+                ->and($chord->root)->toBe('E');
         });
     });
 
@@ -91,9 +91,9 @@ describe('Tonal', function () {
     describe('scale()', function () {
         test('returns ScaleObject', function () {
             $scale = Tonal::scale('C major');
-            expect($scale)->toBeInstanceOf(ScaleObject::class);
-            expect($scale->name)->toBe('C major');
-            expect($scale->notes)->toBe(['C', 'D', 'E', 'F', 'G', 'A', 'B']);
+            expect($scale)->toBeInstanceOf(ScaleObject::class)
+                ->and($scale->name)->toBe('C major')
+                ->and($scale->notes)->toBe(['C', 'D', 'E', 'F', 'G', 'A', 'B']);
         });
 
         test('handles minor scales', function () {
@@ -105,9 +105,9 @@ describe('Tonal', function () {
     describe('majorKey()', function () {
         test('returns MajorKey object', function () {
             $key = Tonal::majorKey('C');
-            expect($key)->toBeInstanceOf(MajorKey::class);
-            expect($key->tonic)->toBe('C');
-            expect($key->type)->toBe('major');
+            expect($key)->toBeInstanceOf(MajorKey::class)
+                ->and($key->tonic)->toBe('C')
+                ->and($key->type)->toBe('major');
         });
 
         test('provides scale degrees', function () {
@@ -119,9 +119,9 @@ describe('Tonal', function () {
     describe('minorKey()', function () {
         test('returns MinorKey object', function () {
             $key = Tonal::minorKey('A');
-            expect($key)->toBeInstanceOf(MinorKey::class);
-            expect($key->tonic)->toBe('A');
-            expect($key->type)->toBe('minor');
+            expect($key)->toBeInstanceOf(MinorKey::class)
+                ->and($key->tonic)->toBe('A')
+                ->and($key->type)->toBe('minor');
         });
 
         test('provides natural scale', function () {
@@ -132,27 +132,27 @@ describe('Tonal', function () {
 
     describe('MIDI functions', function () {
         test('toMidi converts note to MIDI number', function () {
-            expect(Tonal::toMidi('C4'))->toBe(60);
-            expect(Tonal::toMidi('A4'))->toBe(69);
-            expect(Tonal::toMidi(60))->toBe(60);
+            expect(Tonal::toMidi('C4'))->toBe(60)
+                ->and(Tonal::toMidi('A4'))->toBe(69)
+                ->and(Tonal::toMidi(60))->toBe(60);
         });
 
         test('midiToNoteName converts MIDI to note', function () {
-            expect(Tonal::midiToNoteName(60))->toBe('C4');
-            expect(Tonal::midiToNoteName(69))->toBe('A4');
+            expect(Tonal::midiToNoteName(60))->toBe('C4')
+                ->and(Tonal::midiToNoteName(69))->toBe('A4');
         });
 
         test('midiToNoteName with options', function () {
-            expect(Tonal::midiToNoteName(61, ['sharps' => true]))->toBe('C#4');
-            expect(Tonal::midiToNoteName(61, ['sharps' => false]))->toBe('Db4');
+            expect(Tonal::midiToNoteName(61, ['sharps' => true]))->toBe('C#4')
+                ->and(Tonal::midiToNoteName(61, ['sharps' => false]))->toBe('Db4');
         });
     });
 
     describe('romanNumeral()', function () {
         test('returns RomanNumeral object', function () {
             $rn = Tonal::romanNumeral('IV');
-            expect($rn)->toBeInstanceOf(RomanNumeral::class);
-            expect($rn->name)->toBe('IV');
+            expect($rn)->toBeInstanceOf(RomanNumeral::class)
+                ->and($rn->name)->toBe('IV');
         });
 
         test('handles minor numerals', function () {
@@ -177,14 +177,14 @@ describe('Tonal', function () {
         test('returns list of all modules', function () {
             $modules = Tonal::modules();
 
-            expect($modules)->toBeArray();
-            expect($modules)->toHaveKey('Note');
-            expect($modules)->toHaveKey('Chord');
-            expect($modules)->toHaveKey('Scale');
-            expect($modules)->toHaveKey('Interval');
-            expect($modules)->toHaveKey('Key');
-            expect($modules)->toHaveKey('Midi');
-            expect($modules)->toHaveKey('Core');
+            expect($modules)->toBeArray()
+                ->and($modules)->toHaveKey('Note')
+                ->and($modules)->toHaveKey('Chord')
+                ->and($modules)->toHaveKey('Scale')
+                ->and($modules)->toHaveKey('Interval')
+                ->and($modules)->toHaveKey('Key')
+                ->and($modules)->toHaveKey('Midi')
+                ->and($modules)->toHaveKey('Core');
         });
 
         test('all modules are valid classes', function () {

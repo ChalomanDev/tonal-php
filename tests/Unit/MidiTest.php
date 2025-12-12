@@ -7,51 +7,49 @@ use Chaloman\Tonal\Midi;
 describe('Midi', function () {
 
     test('isMidi', function () {
-        expect(Midi::isMidi(100))->toBeTrue();
-        expect(Midi::isMidi(0))->toBeTrue();
-        expect(Midi::isMidi(127))->toBeTrue();
-        expect(Midi::isMidi(-1))->toBeFalse();
-        expect(Midi::isMidi(128))->toBeFalse();
-        expect(Midi::isMidi('invalid'))->toBeFalse();
+        expect(Midi::isMidi(100))->toBeTrue()
+            ->and(Midi::isMidi(0))->toBeTrue()
+            ->and(Midi::isMidi(127))->toBeTrue()
+            ->and(Midi::isMidi(-1))->toBeFalse()
+            ->and(Midi::isMidi(128))->toBeFalse()
+            ->and(Midi::isMidi('invalid'))->toBeFalse();
     });
 
     test('toMidi', function () {
-        expect(Midi::toMidi(100))->toBe(100);
-        expect(Midi::toMidi('C4'))->toBe(60);
-        expect(Midi::toMidi('60'))->toBe(60);
-        expect(Midi::toMidi(0))->toBe(0);
-        expect(Midi::toMidi('0'))->toBe(0);
-        expect(Midi::toMidi(-1))->toBeNull();
-        expect(Midi::toMidi(128))->toBeNull();
-        expect(Midi::toMidi('blah'))->toBeNull();
+        expect(Midi::toMidi(100))->toBe(100)
+            ->and(Midi::toMidi('C4'))->toBe(60)
+            ->and(Midi::toMidi('60'))->toBe(60)
+            ->and(Midi::toMidi(0))->toBe(0)
+            ->and(Midi::toMidi('0'))->toBe(0)
+            ->and(Midi::toMidi(-1))->toBeNull()
+            ->and(Midi::toMidi(128))->toBeNull()
+            ->and(Midi::toMidi('blah'))->toBeNull();
     });
 
     test('freqToMidi', function () {
-        expect(Midi::freqToMidi(220))->toBe(57.0);
-        expect(Midi::freqToMidi(261.62))->toBe(60.0);
-        expect(Midi::freqToMidi(261))->toBe(59.96);
+        expect(Midi::freqToMidi(220))->toBe(57.0)
+            ->and(Midi::freqToMidi(261.62))->toBe(60.0)
+            ->and(Midi::freqToMidi(261))->toBe(59.96);
     });
 
     test('midiToFreq', function () {
-        expect(Midi::midiToFreq(60))->toEqualWithDelta(261.6255653005986, 0.0001);
-        expect(Midi::midiToFreq(69, 443))->toBe(443.0);
+        expect(Midi::midiToFreq(60))->toEqualWithDelta(261.6255653005986, 0.0001)
+            ->and(Midi::midiToFreq(69, 443))->toBe(443.0);
     });
 
     test('midiToNoteName', function () {
         $notes = [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72];
 
         expect(implode(' ', array_map(fn ($m) => Midi::midiToNoteName($m), $notes)))
-            ->toBe('C4 Db4 D4 Eb4 E4 F4 Gb4 G4 Ab4 A4 Bb4 B4 C5');
+            ->toBe('C4 Db4 D4 Eb4 E4 F4 Gb4 G4 Ab4 A4 Bb4 B4 C5')
+            ->and(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['sharps' => true]), $notes)))
+            ->toBe('C4 C#4 D4 D#4 E4 F4 F#4 G4 G#4 A4 A#4 B4 C5')
+            ->and(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['pitchClass' => true]), $notes)))
+            ->toBe('C Db D Eb E F Gb G Ab A Bb B C')
+            ->and(Midi::midiToNoteName(NAN))->toBe('')
+            ->and(Midi::midiToNoteName(-INF))->toBe('')
+            ->and(Midi::midiToNoteName(INF))->toBe('');
 
-        expect(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['sharps' => true]), $notes)))
-            ->toBe('C4 C#4 D4 D#4 E4 F4 F#4 G4 G#4 A4 A#4 B4 C5');
-
-        expect(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['pitchClass' => true]), $notes)))
-            ->toBe('C Db D Eb E F Gb G Ab A Bb B C');
-
-        expect(Midi::midiToNoteName(NAN))->toBe('');
-        expect(Midi::midiToNoteName(-INF))->toBe('');
-        expect(Midi::midiToNoteName(INF))->toBe('');
     });
 
     describe('Midi::pcset', function () {
@@ -99,17 +97,17 @@ describe('Midi', function () {
         $scale = Midi::pcsetSteps('101010', 60);
 
         expect(array_map($scale, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
-            ->toBe([60, 62, 64, 72, 74, 76, 84, 86, 88, 96]);
-
-        expect(array_map($scale, [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]))
+            ->toBe([60, 62, 64, 72, 74, 76, 84, 86, 88, 96])
+            ->and(array_map($scale, [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]))
             ->toBe([60, 52, 50, 48, 40, 38, 36, 28, 26, 24]);
+
     });
 
     test('Midi::pcsetDegrees', function () {
         $scale = Midi::pcsetDegrees('101010', 60);
 
-        expect(array_map($scale, [1, 2, 3, 4, 5]))->toBe([60, 62, 64, 72, 74]);
-        expect(array_map($scale, [-1, -2, -3, 4, 5]))->toBe([52, 50, 48, 72, 74]);
-        expect($scale(0))->toBeNull();
+        expect(array_map($scale, [1, 2, 3, 4, 5]))->toBe([60, 62, 64, 72, 74])
+            ->and(array_map($scale, [-1, -2, -3, 4, 5]))->toBe([52, 50, 48, 72, 74])
+            ->and($scale(0))->toBeNull();
     });
 });

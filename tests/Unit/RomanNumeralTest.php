@@ -91,8 +91,8 @@ describe('RomanNumeral', function () {
     });
 
     test('invalid returns empty', function () {
-        expect(RomanNumeral::get('nothing')->name)->toBe('');
-        expect(RomanNumeral::get('iI')->name)->toBe('');
+        expect(RomanNumeral::get('nothing')->name)->toBe('')
+            ->and(RomanNumeral::get('iI')->name)->toBe('');
     });
 
     test('roman property is correct', function () {
@@ -114,9 +114,9 @@ describe('RomanNumeral', function () {
     });
 
     test('tokenize works correctly', function () {
-        expect(RomanNumeral::tokenize('#VIIb5'))->toBe(['#VIIb5', '#', 'VII', 'b5']);
-        expect(RomanNumeral::tokenize('bIII'))->toBe(['bIII', 'b', 'III', '']);
-        expect(RomanNumeral::tokenize('iv'))->toBe(['iv', '', 'iv', '']);
-        expect(RomanNumeral::tokenize('invalid'))->toBe(['', '', '', '']);
+        expect(RomanNumeral::tokenize('#VIIb5'))->toBe(['#VIIb5', '#', 'VII', 'b5'])
+            ->and(RomanNumeral::tokenize('bIII'))->toBe(['bIII', 'b', 'III', ''])
+            ->and(RomanNumeral::tokenize('iv'))->toBe(['iv', '', 'iv', ''])
+            ->and(RomanNumeral::tokenize('invalid'))->toBe(['', '', '', '']);
     });
 });

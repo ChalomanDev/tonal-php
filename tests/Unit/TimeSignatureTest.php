@@ -9,12 +9,12 @@ describe('TimeSignature', function () {
     test('get', function () {
         $ts = TimeSignature::get('4/4');
 
-        expect($ts->empty)->toBeFalse();
-        expect($ts->name)->toBe('4/4');
-        expect($ts->type->value)->toBe('simple');
-        expect($ts->upper)->toBe(4);
-        expect($ts->lower)->toBe(4);
-        expect($ts->additive)->toBe([]);
+        expect($ts->empty)->toBeFalse()
+            ->and($ts->name)->toBe('4/4')
+            ->and($ts->type->value)->toBe('simple')
+            ->and($ts->upper)->toBe(4)
+            ->and($ts->lower)->toBe(4)
+            ->and($ts->additive)->toBe([]);
     });
 
     test('get invalid', function () {
@@ -22,27 +22,27 @@ describe('TimeSignature', function () {
     });
 
     test('simple', function () {
-        expect(TimeSignature::get('4/4')->type->value)->toBe('simple');
-        expect(TimeSignature::get('3/4')->type->value)->toBe('simple');
-        expect(TimeSignature::get('2/4')->type->value)->toBe('simple');
-        expect(TimeSignature::get('2/2')->type->value)->toBe('simple');
+        expect(TimeSignature::get('4/4')->type->value)->toBe('simple')
+            ->and(TimeSignature::get('3/4')->type->value)->toBe('simple')
+            ->and(TimeSignature::get('2/4')->type->value)->toBe('simple')
+            ->and(TimeSignature::get('2/2')->type->value)->toBe('simple');
     });
 
     test('compound', function () {
-        expect(TimeSignature::get('3/8')->type->value)->toBe('compound');
-        expect(TimeSignature::get('6/8')->type->value)->toBe('compound');
-        expect(TimeSignature::get('9/8')->type->value)->toBe('compound');
-        expect(TimeSignature::get('12/8')->type->value)->toBe('compound');
+        expect(TimeSignature::get('3/8')->type->value)->toBe('compound')
+            ->and(TimeSignature::get('6/8')->type->value)->toBe('compound')
+            ->and(TimeSignature::get('9/8')->type->value)->toBe('compound')
+            ->and(TimeSignature::get('12/8')->type->value)->toBe('compound');
     });
 
     test('irregular', function () {
-        expect(TimeSignature::get('2+3+3/8')->type->value)->toBe('irregular');
-        expect(TimeSignature::get('3+2+2/8')->type->value)->toBe('irregular');
+        expect(TimeSignature::get('2+3+3/8')->type->value)->toBe('irregular')
+            ->and(TimeSignature::get('3+2+2/8')->type->value)->toBe('irregular');
     });
 
     test('irrational', function () {
-        expect(TimeSignature::get('12/10')->type->value)->toBe('irrational');
-        expect(TimeSignature::get('12/19')->type->value)->toBe('irrational');
+        expect(TimeSignature::get('12/10')->type->value)->toBe('irrational')
+            ->and(TimeSignature::get('12/19')->type->value)->toBe('irrational');
     });
 
     test('names', function () {
@@ -61,17 +61,17 @@ describe('TimeSignature', function () {
     test('additive time signatures', function () {
         $ts = TimeSignature::get('2+3+3/8');
 
-        expect($ts->name)->toBe('2+3+3/8');
-        expect($ts->upper)->toBe(8);
-        expect($ts->additive)->toBe([2, 3, 3]);
+        expect($ts->name)->toBe('2+3+3/8')
+            ->and($ts->upper)->toBe(8)
+            ->and($ts->additive)->toBe([2, 3, 3]);
     });
 
     test('array literal', function () {
         $ts = TimeSignature::get([4, 4]);
 
-        expect($ts->name)->toBe('4/4');
-        expect($ts->upper)->toBe(4);
-        expect($ts->lower)->toBe(4);
+        expect($ts->name)->toBe('4/4')
+            ->and($ts->upper)->toBe(4)
+            ->and($ts->lower)->toBe(4);
     });
 
     test('caching returns same instance', function () {

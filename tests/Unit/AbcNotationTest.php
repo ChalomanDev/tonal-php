@@ -6,11 +6,11 @@ use Chaloman\Tonal\AbcNotation;
 
 describe('AbcNotation', function () {
     test('tokenize', function () {
-        expect(AbcNotation::tokenize("C,',"))->toBe(['', 'C', ",',"]);
-        expect(AbcNotation::tokenize("g,,'"))->toBe(['', 'g', ",,'"]);
-        expect(AbcNotation::tokenize(''))->toBe(['', '', '']);
-        expect(AbcNotation::tokenize('m'))->toBe(['', '', '']);
-        expect(AbcNotation::tokenize('c#'))->toBe(['', '', '']);
+        expect(AbcNotation::tokenize("C,',"))->toBe(['', 'C', ",',"])
+            ->and(AbcNotation::tokenize("g,,'"))->toBe(['', 'g', ",,'"])
+            ->and(AbcNotation::tokenize(''))->toBe(['', '', ''])
+            ->and(AbcNotation::tokenize('m'))->toBe(['', '', ''])
+            ->and(AbcNotation::tokenize('c#'))->toBe(['', '', '']);
     });
 
     test('transpose', function () {

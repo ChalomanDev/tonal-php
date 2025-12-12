@@ -52,13 +52,13 @@ describe('Pcset', function () {
     });
 
     test('num', function () {
-        expect(Pcset::num('000000000001'))->toBe(1);
-        expect(Pcset::num(['B']))->toBe(1);
-        expect(Pcset::num(['Cb']))->toBe(1);
-        expect(Pcset::num(['C', 'E', 'G']))->toBe(2192);
-        expect(Pcset::num(['C']))->toBe(2048);
-        expect(Pcset::num('100000000000'))->toBe(2048);
-        expect(Pcset::num('111111111111'))->toBe(4095);
+        expect(Pcset::num('000000000001'))->toBe(1)
+            ->and(Pcset::num(['B']))->toBe(1)
+            ->and(Pcset::num(['Cb']))->toBe(1)
+            ->and(Pcset::num(['C', 'E', 'G']))->toBe(2192)
+            ->and(Pcset::num(['C']))->toBe(2048)
+            ->and(Pcset::num('100000000000'))->toBe(2048)
+            ->and(Pcset::num('111111111111'))->toBe(4095);
     });
 
     test('chroma', function () {
@@ -75,39 +75,40 @@ describe('Pcset', function () {
 
     test('chromas', function () {
         $chromas = Pcset::chromas();
-        expect(count($chromas))->toBe(2048);
-        expect($chromas[0])->toBe('100000000000');
-        expect($chromas[2047])->toBe('111111111111');
+        expect(count($chromas))->toBe(2048)
+            ->and($chromas[0])->toBe('100000000000')
+            ->and($chromas[2047])->toBe('111111111111');
     });
 
     test('intervals', function () {
-        expect(Pcset::intervals('101010101010'))->toBe(s('1P 2M 3M 5d 6m 7m'));
-        expect(Pcset::intervals('1010'))->toBe([]); // Invalid chroma
-        expect(Pcset::intervals(['C', 'G', 'B']))->toBe(['1P', '5P', '7M']);
-        expect(Pcset::intervals(['D', 'F', 'A']))->toBe(['2M', '4P', '6M']);
+        expect(Pcset::intervals('101010101010'))->toBe(s('1P 2M 3M 5d 6m 7m'))
+            ->and(Pcset::intervals('1010'))->toBe([]) // Invalid chroma
+            ->and(Pcset::intervals(['C', 'G', 'B']))->toBe(['1P', '5P', '7M'])
+            ->and(Pcset::intervals(['D', 'F', 'A']))->toBe(['2M', '4P', '6M']);
     });
 
     test('isChroma', function () {
-        expect(Pcset::get('101010101010')->chroma)->toBe('101010101010');
-        expect(Pcset::get('1010101')->chroma)->toBe('000000000000');
-        expect(Pcset::get('blah')->chroma)->toBe('000000000000');
-        expect(Pcset::get('c d e')->chroma)->toBe('000000000000');
+        expect(Pcset::get('101010101010')->chroma)->toBe('101010101010')
+            ->and(Pcset::get('1010101')->chroma)->toBe('000000000000')
+            ->and(Pcset::get('blah')->chroma)->toBe('000000000000')
+            ->and(Pcset::get('c d e')->chroma)->toBe('000000000000');
     });
 
     test('isSubsetOf', function () {
         $isInCMajor = Pcset::isSubsetOf(s('c4 e6 g'));
-        expect($isInCMajor(s('c2 g7')))->toBeTrue();
-        expect($isInCMajor(s('c2 e')))->toBeTrue();
-        expect($isInCMajor(s('c2 e3 g4')))->toBeFalse(); // Same set, not a proper subset
-        expect($isInCMajor(s('c2 e3 b5')))->toBeFalse(); // B not in set
+        expect($isInCMajor(s('c2 g7')))->toBeTrue()
+            ->and($isInCMajor(s('c2 e')))->toBeTrue()
+            ->and($isInCMajor(s('c2 e3 g4')))->toBeFalse() // Same set, not a proper subset
+            ->and($isInCMajor(s('c2 e3 b5')))->toBeFalse() // B not in set
+            ->and(Pcset::isSubsetOf(s('c d e'))(['C', 'D']))->toBeTrue();
 
-        expect(Pcset::isSubsetOf(s('c d e'))(['C', 'D']))->toBeTrue();
+
     });
 
     test('isSubsetOf with chroma', function () {
         $isSubset = Pcset::isSubsetOf('101010101010');
-        expect($isSubset('101000000000'))->toBeTrue();
-        expect($isSubset('111000000000'))->toBeFalse();
+        expect($isSubset('101000000000'))->toBeTrue()
+            ->and($isSubset('111000000000'))->toBeFalse();
     });
 
     test('isSupersetOf', function () {
@@ -121,33 +122,33 @@ describe('Pcset', function () {
 
     test('isSupersetOf with chroma', function () {
         $isSuperset = Pcset::isSupersetOf('101000000000');
-        expect($isSuperset('101010101010'))->toBeTrue();
-        expect($isSuperset('110010101010'))->toBeFalse();
+        expect($isSuperset('101010101010'))->toBeTrue()
+            ->and($isSuperset('110010101010'))->toBeFalse();
     });
 
     test('isEqual', function () {
-        expect(Pcset::isEqual(s('c2 d3 e7 f5'), s('c4 c d5 e6 f1')))->toBeTrue();
-        expect(Pcset::isEqual(s('c f'), s('c4 c f1')))->toBeTrue();
+        expect(Pcset::isEqual(s('c2 d3 e7 f5'), s('c4 c d5 e6 f1')))->toBeTrue()
+            ->and(Pcset::isEqual(s('c f'), s('c4 c f1')))->toBeTrue();
     });
 
     test('isNoteIncludedIn', function () {
         $isIncludedInC = Pcset::isNoteIncludedIn(['c', 'd', 'e']);
-        expect($isIncludedInC('C4'))->toBeTrue();
-        expect($isIncludedInC('C#4'))->toBeFalse();
+        expect($isIncludedInC('C4'))->toBeTrue()
+            ->and($isIncludedInC('C#4'))->toBeFalse();
     });
 
     test('filter', function () {
         $inCMajor = Pcset::filter(s('c d e'));
-        expect($inCMajor(s('c2 c#2 d2 c3 c#3 d3')))->toBe(s('c2 d2 c3 d3'));
-        expect(Pcset::filter(s('c'))(s('c2 c#2 d2 c3 c#3 d3')))->toBe(s('c2 c3'));
+        expect($inCMajor(s('c2 c#2 d2 c3 c#3 d3')))->toBe(s('c2 d2 c3 d3'))
+            ->and(Pcset::filter(s('c'))(s('c2 c#2 d2 c3 c#3 d3')))->toBe(s('c2 c3'));
     });
 
     test('notes', function () {
-        expect(Pcset::notes(s('c d e f g a b')))->toBe(s('C D E F G A B'));
-        expect(Pcset::notes(s('b a g f e d c')))->toBe(s('C D E F G A B'));
-        expect(Pcset::notes(s('D3 A3 Bb3 C4 D4 E4 F4 G4 A4')))->toBe(s('C D E F G A Bb'));
-        expect(Pcset::notes('101011010110'))->toBe(s('C D E F G A Bb'));
-        expect(Pcset::notes(['blah', 'x']))->toBe([]);
+        expect(Pcset::notes(s('c d e f g a b')))->toBe(s('C D E F G A B'))
+            ->and(Pcset::notes(s('b a g f e d c')))->toBe(s('C D E F G A B'))
+            ->and(Pcset::notes(s('D3 A3 Bb3 C4 D4 E4 F4 G4 A4')))->toBe(s('C D E F G A Bb'))
+            ->and(Pcset::notes('101011010110'))->toBe(s('C D E F G A Bb'))
+            ->and(Pcset::notes(['blah', 'x']))->toBe([]);
     });
 
     test('modes', function () {

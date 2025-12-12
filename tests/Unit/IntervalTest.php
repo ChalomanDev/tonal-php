@@ -24,10 +24,10 @@ describe('Interval', function () {
     });
 
     test('shorthand properties', function () {
-        expect(Interval::name('d5'))->toBe('5d');
-        expect(Interval::num('d5'))->toBe(5);
-        expect(Interval::quality('d5'))->toBe('d');
-        expect(Interval::semitones('d5'))->toBe(6);
+        expect(Interval::name('d5'))->toBe('5d')
+            ->and(Interval::num('d5'))->toBe(5)
+            ->and(Interval::quality('d5'))->toBe('d')
+            ->and(Interval::semitones('d5'))->toBe(6);
     });
 
     test('distance', function () {
@@ -44,38 +44,32 @@ describe('Interval', function () {
         $split = fn ($s) => explode(' ', $s);
 
         expect(array_map(Interval::simplify(...), $split('1P 2M 3M 4P 5P 6M 7M')))
-            ->toBe($split('1P 2M 3M 4P 5P 6M 7M'));
-
-        expect(array_map(Interval::simplify(...), $split('8P 9M 10M 11P 12P 13M 14M')))
-            ->toBe($split('8P 2M 3M 4P 5P 6M 7M'));
-
-        expect(array_map(Interval::simplify(...), $split('1d 1P 1A 8d 8P 8A 15d 15P 15A')))
-            ->toBe($split('1d 1P 1A 8d 8P 8A 1d 1P 1A'));
-
-        expect(array_map(Interval::simplify(...), $split('-1P -2M -3M -4P -5P -6M -7M')))
-            ->toBe($split('-1P -2M -3M -4P -5P -6M -7M'));
-
-        expect(array_map(Interval::simplify(...), $split('-8P -9M -10M -11P -12P -13M -14M')))
+            ->toBe($split('1P 2M 3M 4P 5P 6M 7M'))
+            ->and(array_map(Interval::simplify(...), $split('8P 9M 10M 11P 12P 13M 14M')))
+            ->toBe($split('8P 2M 3M 4P 5P 6M 7M'))
+            ->and(array_map(Interval::simplify(...), $split('1d 1P 1A 8d 8P 8A 15d 15P 15A')))
+            ->toBe($split('1d 1P 1A 8d 8P 8A 1d 1P 1A'))
+            ->and(array_map(Interval::simplify(...), $split('-1P -2M -3M -4P -5P -6M -7M')))
+            ->toBe($split('-1P -2M -3M -4P -5P -6M -7M'))
+            ->and(array_map(Interval::simplify(...), $split('-8P -9M -10M -11P -12P -13M -14M')))
             ->toBe($split('-8P -2M -3M -4P -5P -6M -7M'));
+
     });
 
     test('invert intervals', function () {
         $split = fn ($s) => explode(' ', $s);
 
         expect(array_map(Interval::invert(...), $split('1P 2M 3M 4P 5P 6M 7M')))
-            ->toBe($split('1P 7m 6m 5P 4P 3m 2m'));
-
-        expect(array_map(Interval::invert(...), $split('1d 2m 3m 4d 5d 6m 7m')))
-            ->toBe($split('1A 7M 6M 5A 4A 3M 2M'));
-
-        expect(array_map(Interval::invert(...), $split('1A 2A 3A 4A 5A 6A 7A')))
-            ->toBe($split('1d 7d 6d 5d 4d 3d 2d'));
-
-        expect(array_map(Interval::invert(...), $split('-1P -2M -3M -4P -5P -6M -7M')))
-            ->toBe($split('-1P -7m -6m -5P -4P -3m -2m'));
-
-        expect(array_map(Interval::invert(...), $split('8P 9M 10M 11P 12P 13M 14M')))
+            ->toBe($split('1P 7m 6m 5P 4P 3m 2m'))
+            ->and(array_map(Interval::invert(...), $split('1d 2m 3m 4d 5d 6m 7m')))
+            ->toBe($split('1A 7M 6M 5A 4A 3M 2M'))
+            ->and(array_map(Interval::invert(...), $split('1A 2A 3A 4A 5A 6A 7A')))
+            ->toBe($split('1d 7d 6d 5d 4d 3d 2d'))
+            ->and(array_map(Interval::invert(...), $split('-1P -2M -3M -4P -5P -6M -7M')))
+            ->toBe($split('-1P -7m -6m -5P -4P -3m -2m'))
+            ->and(array_map(Interval::invert(...), $split('8P 9M 10M 11P 12P 13M 14M')))
             ->toBe($split('8P 14m 13m 12P 11P 10m 9m'));
+
     });
 
     test('fromSemitones', function () {
@@ -109,8 +103,8 @@ describe('Interval', function () {
     });
 
     test('subtract', function () {
-        expect(Interval::subtract('5P', '3M'))->toBe('3m');
-        expect(Interval::subtract('3M', '5P'))->toBe('-3m');
+        expect(Interval::subtract('5P', '3M'))->toBe('3m')
+            ->and(Interval::subtract('3M', '5P'))->toBe('-3m');
 
         $subtractFrom5P = fn ($n) => Interval::subtract('5P', $n);
         expect(array_map($subtractFrom5P, Interval::names()))
@@ -121,7 +115,7 @@ describe('Interval', function () {
         expect(Interval::transposeFifths('4P', 1))->toBe('8P');
 
         $transpose = fn ($fifths) => Interval::transposeFifths('1P', $fifths);
-        expect(implode(' ', array_map($transpose, [0, 1, 2, 3, 4])))->toBe('1P 5P 9M 13M 17M');
-        expect(implode(' ', array_map($transpose, [0, -1, -2, -3, -4])))->toBe('1P -5P -9M -13M -17M');
+        expect(implode(' ', array_map($transpose, [0, 1, 2, 3, 4])))->toBe('1P 5P 9M 13M 17M')
+            ->and(implode(' ', array_map($transpose, [0, -1, -2, -3, -4])))->toBe('1P -5P -9M -13M -17M');
     });
 });

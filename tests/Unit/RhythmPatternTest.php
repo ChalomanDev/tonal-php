@@ -17,8 +17,8 @@ function sequential(float $start, float $step): callable
 describe('RhythmPattern', function () {
 
     test('generates binary rhythms', function () {
-        expect(RhythmPattern::binary(13))->toBe([1, 1, 0, 1]);
-        expect(RhythmPattern::binary(12, 13))->toBe([1, 1, 0, 0, 1, 1, 0, 1]);
+        expect(RhythmPattern::binary(13))->toBe([1, 1, 0, 1])
+            ->and(RhythmPattern::binary(12, 13))->toBe([1, 1, 0, 0, 1, 1, 0, 1]);
     });
 
     test('generates hexadecimal patterns', function () {
@@ -44,13 +44,13 @@ describe('RhythmPattern', function () {
     });
 
     test('rotates pattern', function () {
-        expect(RhythmPattern::rotate([1, 0, 0, 1], 0))->toBe([1, 0, 0, 1]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], 1))->toBe([1, 1, 0, 0]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], 2))->toBe([0, 1, 1, 0]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], 3))->toBe([0, 0, 1, 1]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], 4))->toBe([1, 0, 0, 1]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], -1))->toBe([0, 0, 1, 1]);
-        expect(RhythmPattern::rotate([1, 0, 0, 1], -2))->toBe([0, 1, 1, 0]);
+        expect(RhythmPattern::rotate([1, 0, 0, 1], 0))->toBe([1, 0, 0, 1])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], 1))->toBe([1, 1, 0, 0])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], 2))->toBe([0, 1, 1, 0])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], 3))->toBe([0, 0, 1, 1])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], 4))->toBe([1, 0, 0, 1])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], -1))->toBe([0, 0, 1, 1])
+            ->and(RhythmPattern::rotate([1, 0, 0, 1], -2))->toBe([0, 1, 1, 0]);
     });
 
     test('generates euclidian patterns', function () {

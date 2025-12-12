@@ -12,8 +12,8 @@ beforeEach(function () {
 
 describe('ScaleType', function () {
     test('all returns all scales', function () {
-        expect(count(ScaleType::all()))->toBe(92);
-        expect(ScaleType::all()[0]->name)->toBe('major pentatonic');
+        expect(count(ScaleType::all()))->toBe(92)
+            ->and(ScaleType::all()[0]->name)->toBe('major pentatonic');
     });
 
     test('get returns scale type by name', function () {
@@ -45,9 +45,9 @@ describe('ScaleType', function () {
     });
 
     test('get returns scale type by alias', function () {
-        expect(ScaleType::get('ionian'))->toEqual(ScaleType::get('major'));
-        expect(ScaleType::get('aeolian'))->toEqual(ScaleType::get('minor'));
-        expect(ScaleType::get('pentatonic'))->toEqual(ScaleType::get('major pentatonic'));
+        expect(ScaleType::get('ionian'))->toEqual(ScaleType::get('major'))
+            ->and(ScaleType::get('aeolian'))->toEqual(ScaleType::get('minor'))
+            ->and(ScaleType::get('pentatonic'))->toEqual(ScaleType::get('major pentatonic'));
     });
 
     test('get returns scale type by chroma', function () {
@@ -67,8 +67,8 @@ describe('ScaleType', function () {
         expect($scale->chroma)->toBe('100000010000');
 
         ScaleType::add(['1P', '5P'], 'quinta', ['q', 'Q']);
-        expect(ScaleType::get('q'))->toEqual(ScaleType::get('quinta'));
-        expect(ScaleType::get('Q'))->toEqual(ScaleType::get('quinta'));
+        expect(ScaleType::get('q'))->toEqual(ScaleType::get('quinta'))
+            ->and(ScaleType::get('Q'))->toEqual(ScaleType::get('quinta'));
     });
 
     test('major modes', function () {
@@ -122,16 +122,16 @@ describe('ScaleType', function () {
 
         ScaleType::removeAll();
 
-        expect(ScaleType::all())->toBe([]);
-        expect(ScaleType::keys())->toBe([]);
+        expect(ScaleType::all())->toBe([])
+            ->and(ScaleType::keys())->toBe([]);
     });
 
     test('names returns all scale names', function () {
         $names = ScaleType::names();
 
-        expect(count($names))->toBe(92);
-        expect($names[0])->toBe('major pentatonic');
-        expect(in_array('major', $names, true))->toBeTrue();
-        expect(in_array('minor', $names, true))->toBeTrue();
+        expect(count($names))->toBe(92)
+            ->and($names[0])->toBe('major pentatonic')
+            ->and(in_array('major', $names, true))->toBeTrue()
+            ->and(in_array('minor', $names, true))->toBeTrue();
     });
 });

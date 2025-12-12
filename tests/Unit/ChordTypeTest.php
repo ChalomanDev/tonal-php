@@ -57,9 +57,9 @@ describe('ChordType', function () {
     });
 
     test('get returns chord type by alias', function () {
-        expect(ChordType::get('m7'))->toEqual(ChordType::get('minor seventh'));
-        expect(ChordType::get('M7'))->toEqual(ChordType::get('major seventh'));
-        expect(ChordType::get('7'))->toEqual(ChordType::get('dominant seventh'));
+        expect(ChordType::get('m7'))->toEqual(ChordType::get('minor seventh'))
+            ->and(ChordType::get('M7'))->toEqual(ChordType::get('major seventh'))
+            ->and(ChordType::get('7'))->toEqual(ChordType::get('dominant seventh'));
     });
 
     test('get returns chord type by chroma', function () {
@@ -74,8 +74,8 @@ describe('ChordType', function () {
 
     test('get returns empty chord type for unknown', function () {
         $unknown = ChordType::get('unknown chord');
-        expect($unknown->empty)->toBeTrue();
-        expect($unknown->quality)->toBe(ChordQuality::Unknown);
+        expect($unknown->empty)->toBeTrue()
+            ->and($unknown->quality)->toBe(ChordQuality::Unknown);
     });
 
     test('add a chord', function () {
@@ -94,16 +94,16 @@ describe('ChordType', function () {
 
         ChordType::removeAll();
 
-        expect(ChordType::all())->toBe([]);
-        expect(ChordType::keys())->toBe([]);
+        expect(ChordType::all())->toBe([])
+            ->and(ChordType::keys())->toBe([]);
     });
 
     test('chord quality detection', function () {
-        expect(ChordType::get('major')->quality)->toBe(ChordQuality::Major);
-        expect(ChordType::get('minor')->quality)->toBe(ChordQuality::Minor);
-        expect(ChordType::get('augmented')->quality)->toBe(ChordQuality::Augmented);
-        expect(ChordType::get('diminished')->quality)->toBe(ChordQuality::Diminished);
-        expect(ChordType::get('fifth')->quality)->toBe(ChordQuality::Unknown);
+        expect(ChordType::get('major')->quality)->toBe(ChordQuality::Major)
+            ->and(ChordType::get('minor')->quality)->toBe(ChordQuality::Minor)
+            ->and(ChordType::get('augmented')->quality)->toBe(ChordQuality::Augmented)
+            ->and(ChordType::get('diminished')->quality)->toBe(ChordQuality::Diminished)
+            ->and(ChordType::get('fifth')->quality)->toBe(ChordQuality::Unknown);
     });
 });
 

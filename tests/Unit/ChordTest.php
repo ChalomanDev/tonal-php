@@ -32,83 +32,83 @@ describe('Chord', function () {
     describe('getChord', function () {
         test('Chord properties', function () {
             $chord = Chord::getChord('maj7', 'G4', 'G4');
-            expect($chord->empty)->toBeFalse();
-            expect($chord->name)->toBe('G major seventh');
-            expect($chord->symbol)->toBe('Gmaj7');
-            expect($chord->tonic)->toBe('G');
-            expect($chord->root)->toBe('G');
-            expect($chord->bass)->toBe('');
-            expect($chord->rootDegree)->toBe(1);
-            expect($chord->setNum)->toBe(2193);
-            expect($chord->type)->toBe('major seventh');
-            expect($chord->aliases)->toBe(['maj7', 'Δ', 'ma7', 'M7', 'Maj7', '^7']);
-            expect($chord->chroma)->toBe('100010010001');
-            expect($chord->intervals)->toBe(['1P', '3M', '5P', '7M']);
-            expect($chord->normalized)->toBe('100010010001');
-            expect($chord->notes)->toBe(['G', 'B', 'D', 'F#']);
-            expect($chord->quality)->toBe('Major');
+            expect($chord->empty)->toBeFalse()
+                ->and($chord->name)->toBe('G major seventh')
+                ->and($chord->symbol)->toBe('Gmaj7')
+                ->and($chord->tonic)->toBe('G')
+                ->and($chord->root)->toBe('G')
+                ->and($chord->bass)->toBe('')
+                ->and($chord->rootDegree)->toBe(1)
+                ->and($chord->setNum)->toBe(2193)
+                ->and($chord->type)->toBe('major seventh')
+                ->and($chord->aliases)->toBe(['maj7', 'Δ', 'ma7', 'M7', 'Maj7', '^7'])
+                ->and($chord->chroma)->toBe('100010010001')
+                ->and($chord->intervals)->toBe(['1P', '3M', '5P', '7M'])
+                ->and($chord->normalized)->toBe('100010010001')
+                ->and($chord->notes)->toBe(['G', 'B', 'D', 'F#'])
+                ->and($chord->quality)->toBe('Major');
         });
 
         test('first inversion', function () {
             $chord = Chord::getChord('maj7', 'G4', 'B4');
-            expect($chord->empty)->toBeFalse();
-            expect($chord->name)->toBe('G major seventh over B');
-            expect($chord->symbol)->toBe('Gmaj7/B');
-            expect($chord->tonic)->toBe('G');
-            expect($chord->root)->toBe('B');
-            expect($chord->bass)->toBe('B');
-            expect($chord->rootDegree)->toBe(2);
-            expect($chord->intervals)->toBe(['3M', '5P', '7M', '8P']);
-            expect($chord->notes)->toBe(['B', 'D', 'F#', 'G']);
+            expect($chord->empty)->toBeFalse()
+                ->and($chord->name)->toBe('G major seventh over B')
+                ->and($chord->symbol)->toBe('Gmaj7/B')
+                ->and($chord->tonic)->toBe('G')
+                ->and($chord->root)->toBe('B')
+                ->and($chord->bass)->toBe('B')
+                ->and($chord->rootDegree)->toBe(2)
+                ->and($chord->intervals)->toBe(['3M', '5P', '7M', '8P'])
+                ->and($chord->notes)->toBe(['B', 'D', 'F#', 'G']);
         });
 
         test('first inversion without octave', function () {
             $chord = Chord::getChord('maj7', 'G', 'B');
-            expect($chord->name)->toBe('G major seventh over B');
-            expect($chord->symbol)->toBe('Gmaj7/B');
-            expect($chord->rootDegree)->toBe(2);
-            expect($chord->intervals)->toBe(['3M', '5P', '7M', '8P']);
-            expect($chord->notes)->toBe(['B', 'D', 'F#', 'G']);
+            expect($chord->name)->toBe('G major seventh over B')
+                ->and($chord->symbol)->toBe('Gmaj7/B')
+                ->and($chord->rootDegree)->toBe(2)
+                ->and($chord->intervals)->toBe(['3M', '5P', '7M', '8P'])
+                ->and($chord->notes)->toBe(['B', 'D', 'F#', 'G']);
         });
 
         test('second inversion', function () {
             $chord = Chord::getChord('maj7', 'G4', 'D5');
-            expect($chord->name)->toBe('G major seventh over D');
-            expect($chord->symbol)->toBe('Gmaj7/D');
-            expect($chord->rootDegree)->toBe(3);
-            expect($chord->intervals)->toBe(['5P', '7M', '8P', '10M']);
-            expect($chord->notes)->toBe(['D', 'F#', 'G', 'B']);
+            expect($chord->name)->toBe('G major seventh over D')
+                ->and($chord->symbol)->toBe('Gmaj7/D')
+                ->and($chord->rootDegree)->toBe(3)
+                ->and($chord->intervals)->toBe(['5P', '7M', '8P', '10M'])
+                ->and($chord->notes)->toBe(['D', 'F#', 'G', 'B']);
         });
 
         test('without root', function () {
             $chord = Chord::getChord('M7', 'G');
-            expect($chord->symbol)->toBe('GM7');
-            expect($chord->name)->toBe('G major seventh');
-            expect($chord->notes)->toBe(['G', 'B', 'D', 'F#']);
+            expect($chord->symbol)->toBe('GM7')
+                ->and($chord->name)->toBe('G major seventh')
+                ->and($chord->notes)->toBe(['G', 'B', 'D', 'F#']);
         });
 
         test('rootDegrees', function () {
-            expect(Chord::getChord('maj7', 'C', 'C')->rootDegree)->toBe(1);
-            expect(is_nan(Chord::getChord('maj7', 'C', 'D')->rootDegree))->toBeTrue();
+            expect(Chord::getChord('maj7', 'C', 'C')->rootDegree)->toBe(1)
+                ->and(is_nan(Chord::getChord('maj7', 'C', 'D')->rootDegree))->toBeTrue();
         });
 
         test('without tonic nor root', function () {
             $chord = Chord::getChord('dim');
-            expect($chord->symbol)->toBe('dim');
-            expect($chord->name)->toBe('diminished');
-            expect($chord->tonic)->toBeNull();
-            expect($chord->root)->toBe('');
-            expect($chord->bass)->toBe('');
-            expect(is_nan($chord->rootDegree))->toBeTrue();
-            expect($chord->type)->toBe('diminished');
-            expect($chord->aliases)->toBe(['dim', '°', 'o']);
-            expect($chord->chroma)->toBe('100100100000');
-            expect($chord->empty)->toBeFalse();
-            expect($chord->intervals)->toBe(['1P', '3m', '5d']);
-            expect($chord->normalized)->toBe('100000100100');
-            expect($chord->notes)->toBe([]);
-            expect($chord->quality)->toBe('Diminished');
-            expect($chord->setNum)->toBe(2336);
+            expect($chord->symbol)->toBe('dim')
+                ->and($chord->name)->toBe('diminished')
+                ->and($chord->tonic)->toBeNull()
+                ->and($chord->root)->toBe('')
+                ->and($chord->bass)->toBe('')
+                ->and(is_nan($chord->rootDegree))->toBeTrue()
+                ->and($chord->type)->toBe('diminished')
+                ->and($chord->aliases)->toBe(['dim', '°', 'o'])
+                ->and($chord->chroma)->toBe('100100100000')
+                ->and($chord->empty)->toBeFalse()
+                ->and($chord->intervals)->toBe(['1P', '3m', '5d'])
+                ->and($chord->normalized)->toBe('100000100100')
+                ->and($chord->notes)->toBe([])
+                ->and($chord->quality)->toBe('Diminished')
+                ->and($chord->setNum)->toBe(2336);
         });
     });
 
@@ -154,52 +154,52 @@ describe('Chord', function () {
     });
 
     test('chord without tonic', function () {
-        expect(Chord::get('dim')->name)->toBe('diminished');
-        expect(Chord::get('dim7')->name)->toBe('diminished seventh');
-        expect(Chord::get('alt7')->name)->toBe('altered');
+        expect(Chord::get('dim')->name)->toBe('diminished')
+            ->and(Chord::get('dim7')->name)->toBe('diminished seventh')
+            ->and(Chord::get('alt7')->name)->toBe('altered');
     });
 
     test('notes property', function () {
-        expect(Chord::get('Cmaj7')->notes)->toBe(['C', 'E', 'G', 'B']);
-        expect(Chord::get('Eb7add6')->notes)->toBe(['Eb', 'G', 'Bb', 'Db', 'C']);
-        expect(Chord::get(['C4', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B']);
-        expect(Chord::get('C7')->notes)->toBe(['C', 'E', 'G', 'Bb']);
-        expect(Chord::get('Cmaj7#5')->notes)->toBe(['C', 'E', 'G#', 'B']);
-        expect(Chord::get('blah')->notes)->toBe([]);
+        expect(Chord::get('Cmaj7')->notes)->toBe(['C', 'E', 'G', 'B'])
+            ->and(Chord::get('Eb7add6')->notes)->toBe(['Eb', 'G', 'Bb', 'Db', 'C'])
+            ->and(Chord::get(['C4', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B'])
+            ->and(Chord::get('C7')->notes)->toBe(['C', 'E', 'G', 'Bb'])
+            ->and(Chord::get('Cmaj7#5')->notes)->toBe(['C', 'E', 'G#', 'B'])
+            ->and(Chord::get('blah')->notes)->toBe([]);
     });
 
     test('notes with two params', function () {
-        expect(Chord::get(['C', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B']);
-        expect(Chord::get(['C6', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B']);
+        expect(Chord::get(['C', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B'])
+            ->and(Chord::get(['C6', 'maj7'])->notes)->toBe(['C', 'E', 'G', 'B']);
     });
 
     test('augmented chords (issue #52)', function () {
-        expect(Chord::get('Caug')->notes)->toBe(['C', 'E', 'G#']);
-        expect(Chord::get(['C', 'aug'])->notes)->toBe(['C', 'E', 'G#']);
+        expect(Chord::get('Caug')->notes)->toBe(['C', 'E', 'G#'])
+            ->and(Chord::get(['C', 'aug'])->notes)->toBe(['C', 'E', 'G#']);
     });
 
     test('intervals', function () {
-        expect(Chord::get('maj7')->intervals)->toBe(['1P', '3M', '5P', '7M']);
-        expect(Chord::get('Cmaj7')->intervals)->toBe(['1P', '3M', '5P', '7M']);
-        expect(Chord::get('aug')->intervals)->toBe(['1P', '3M', '5A']);
-        expect(Chord::get('C13no5')->intervals)->toBe(['1P', '3M', '7m', '9M', '13M']);
-        expect(Chord::get('major')->intervals)->toBe(['1P', '3M', '5P']);
+        expect(Chord::get('maj7')->intervals)->toBe(['1P', '3M', '5P', '7M'])
+            ->and(Chord::get('Cmaj7')->intervals)->toBe(['1P', '3M', '5P', '7M'])
+            ->and(Chord::get('aug')->intervals)->toBe(['1P', '3M', '5A'])
+            ->and(Chord::get('C13no5')->intervals)->toBe(['1P', '3M', '7m', '9M', '13M'])
+            ->and(Chord::get('major')->intervals)->toBe(['1P', '3M', '5P']);
     });
 
     test('notes function', function () {
-        expect(Chord::notes('Cmaj7'))->toBe(['C', 'E', 'G', 'B']);
-        expect(Chord::notes('maj7'))->toBe([]);
-        expect(Chord::notes('maj7', 'C4'))->toBe(['C4', 'E4', 'G4', 'B4']);
-        expect(Chord::notes('Cmaj7', 'C4'))->toBe(['C4', 'E4', 'G4', 'B4']);
-        expect(Chord::notes('Cmaj7', 'D4'))->toBe(['D4', 'F#4', 'A4', 'C#5']);
-        expect(Chord::notes('C/Bb', 'D4'))->toBe(['C4', 'D4', 'F#4', 'A4']);
+        expect(Chord::notes('Cmaj7'))->toBe(['C', 'E', 'G', 'B'])
+            ->and(Chord::notes('maj7'))->toBe([])
+            ->and(Chord::notes('maj7', 'C4'))->toBe(['C4', 'E4', 'G4', 'B4'])
+            ->and(Chord::notes('Cmaj7', 'C4'))->toBe(['C4', 'E4', 'G4', 'B4'])
+            ->and(Chord::notes('Cmaj7', 'D4'))->toBe(['D4', 'F#4', 'A4', 'C#5'])
+            ->and(Chord::notes('C/Bb', 'D4'))->toBe(['C4', 'D4', 'F#4', 'A4']);
     });
 
     test('existence', function () {
-        expect(Chord::get('C6add9')->name)->toBe('C sixth added ninth');
-        expect(Chord::get('maj7')->empty)->toBeFalse();
-        expect(Chord::get('Cmaj7')->empty)->toBeFalse();
-        expect(Chord::get('mixolydian')->empty)->toBeTrue();
+        expect(Chord::get('C6add9')->name)->toBe('C sixth added ninth')
+            ->and(Chord::get('maj7')->empty)->toBeFalse()
+            ->and(Chord::get('Cmaj7')->empty)->toBeFalse()
+            ->and(Chord::get('mixolydian')->empty)->toBeTrue();
     });
 
     test('chordScales', function () {
@@ -208,9 +208,9 @@ describe('Chord', function () {
     });
 
     test('transpose chord names', function () {
-        expect(Chord::transpose('Eb7b9', '5P'))->toBe('Bb7b9');
-        expect(Chord::transpose('7b9', '5P'))->toBe('7b9');
-        expect(Chord::transpose('Cmaj7/B', 'P5'))->toBe('Gmaj7/F#');
+        expect(Chord::transpose('Eb7b9', '5P'))->toBe('Bb7b9')
+            ->and(Chord::transpose('7b9', '5P'))->toBe('7b9')
+            ->and(Chord::transpose('Cmaj7/B', 'P5'))->toBe('Gmaj7/F#');
     });
 
     test('extended', function () {
@@ -228,16 +228,16 @@ describe('Chord', function () {
 
     describe('Chord.degrees', function () {
         test('ascending', function () {
-            expect(array_map(Chord::degrees('C'), [1, 2, 3, 4]))->toBe(['C', 'E', 'G', 'C']);
-            expect(array_map(Chord::degrees('CM', 'C4'), [1, 2, 3, 4]))->toBe(['C4', 'E4', 'G4', 'C5']);
-            expect(array_map(Chord::degrees('Cm6', 'C4'), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-                ->toBe(['C4', 'Eb4', 'G4', 'A4', 'C5', 'Eb5', 'G5', 'A5', 'C6', 'Eb6']);
-            expect(array_map(Chord::degrees('C/B'), [1, 2, 3, 4]))->toBe(['B', 'C', 'E', 'G']);
+            expect(array_map(Chord::degrees('C'), [1, 2, 3, 4]))->toBe(['C', 'E', 'G', 'C'])
+                ->and(array_map(Chord::degrees('CM', 'C4'), [1, 2, 3, 4]))->toBe(['C4', 'E4', 'G4', 'C5'])
+                ->and(array_map(Chord::degrees('Cm6', 'C4'), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+                ->toBe(['C4', 'Eb4', 'G4', 'A4', 'C5', 'Eb5', 'G5', 'A5', 'C6', 'Eb6'])
+                ->and(array_map(Chord::degrees('C/B'), [1, 2, 3, 4]))->toBe(['B', 'C', 'E', 'G']);
         });
 
         test('descending', function () {
-            expect(array_map(Chord::degrees('C'), [-1, -2, -3]))->toBe(['G', 'E', 'C']);
-            expect(array_map(Chord::degrees('CM', 'C4'), [-1, -2, -3]))->toBe(['G3', 'E3', 'C3']);
+            expect(array_map(Chord::degrees('C'), [-1, -2, -3]))->toBe(['G', 'E', 'C'])
+                ->and(array_map(Chord::degrees('CM', 'C4'), [-1, -2, -3]))->toBe(['G3', 'E3', 'C3']);
         });
     });
 

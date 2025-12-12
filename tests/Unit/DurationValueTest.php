@@ -9,32 +9,32 @@ describe('DurationValue', function () {
     test('get shorthand', function () {
         $result = DurationValue::get('q');
 
-        expect($result->empty)->toBeFalse();
-        expect($result->name)->toBe('q');
-        expect($result->value)->toBe(0.25);
-        expect($result->fraction)->toBe([1, 4]);
-        expect($result->dots)->toBe('');
-        expect($result->shorthand)->toBe('q');
-        expect($result->names)->toBe(['quarter', 'crotchet']);
+        expect($result->empty)->toBeFalse()
+            ->and($result->name)->toBe('q')
+            ->and($result->value)->toBe(0.25)
+            ->and($result->fraction)->toBe([1, 4])
+            ->and($result->dots)->toBe('')
+            ->and($result->shorthand)->toBe('q')
+            ->and($result->names)->toBe(['quarter', 'crotchet']);
     });
 
     test('get with dot', function () {
         $result = DurationValue::get('dl.');
 
-        expect($result->empty)->toBeFalse();
-        expect($result->name)->toBe('dl.');
-        expect($result->dots)->toBe('.');
-        expect($result->value)->toBe(12.0);
-        expect($result->fraction)->toBe([12, 1]);
-        expect($result->shorthand)->toBe('dl');
-        expect($result->names)->toBe(['large', 'duplex longa', 'maxima', 'octuple', 'octuple whole']);
+        expect($result->empty)->toBeFalse()
+            ->and($result->name)->toBe('dl.')
+            ->and($result->dots)->toBe('.')
+            ->and($result->value)->toBe(12.0)
+            ->and($result->fraction)->toBe([12, 1])
+            ->and($result->shorthand)->toBe('dl')
+            ->and($result->names)->toBe(['large', 'duplex longa', 'maxima', 'octuple', 'octuple whole']);
     });
 
     test('get long name', function () {
         $result = DurationValue::get('large.');
 
-        expect($result->empty)->toBeFalse();
-        expect($result->name)->toBe('large.');
+        expect($result->empty)->toBeFalse()
+            ->and($result->name)->toBe('large.');
     });
 
     test('value for duplex longa', function () {
@@ -82,7 +82,7 @@ describe('DurationValue', function () {
     test('invalid name returns empty', function () {
         $result = DurationValue::get('invalid');
 
-        expect($result->empty)->toBeTrue();
-        expect($result->value)->toBe(0.0);
+        expect($result->empty)->toBeTrue()
+            ->and($result->value)->toBe(0.0);
     });
 });
