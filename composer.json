@@ -45,6 +45,7 @@
         "source": "https://github.com/ChalomanDev/tonal-php"
     },
     "minimum-stability": "stable",
+    "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true

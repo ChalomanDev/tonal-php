@@ -1,7 +1,7 @@
 # Tonal PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/chaloman/tonal-php.svg?style=flat-square)](https://packagist.org/packages/chaloman/tonal-php)
-[![Tests](https://github.com/ChalomanDev/tonal-php/actions/workflows/tests.yml/badge.svg)](https://github.com/ChalomanDev/tonal-php/actions/workflows/tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/chaloman/tonal-php.svg?style=flat-square)](https://packagist.org/packages/chaloman/tonal-php)
 [![License](https://img.shields.io/packagist/l/chaloman/tonal-php.svg?style=flat-square)](https://packagist.org/packages/chaloman/tonal-php)
 
 A PHP port of [Tonal.js](https://github.com/tonaljs/tonal) - a music theory library for working with notes, intervals, chords, scales, modes, keys, and more.
