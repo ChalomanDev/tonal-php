@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Chaloman\Tonal\Midi;
 
-describe('midi', function () {
+describe('Midi', function () {
 
     test('isMidi', function () {
         expect(Midi::isMidi(100))->toBeTrue();

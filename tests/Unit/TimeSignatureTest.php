@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Chaloman\Tonal\TimeSignature;
 
-describe('time-signature', function () {
+describe('TimeSignature', function () {
 
     test('get', function () {
         $ts = TimeSignature::get('4/4');

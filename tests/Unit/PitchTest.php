@@ -20,7 +20,7 @@ $Gs6 = new Pitch(step: 4, alt: 1, oct: 6);
 $P5 = new Pitch(step: 4, alt: 0, oct: 0, dir: Direction::Ascending);
 $P_5 = new Pitch(step: 4, alt: 0, oct: 0, dir: Direction::Descending);
 
-describe('@tonaljs/pitch', function () use ($C, $Cs, $Cb, $A, $C4, $A4, $Gs6, $P5, $P_5) {
+describe('Pitch', function () use ($C, $Cs, $Cb, $A, $C4, $A4, $Gs6, $P5, $P_5) {
 
     test('isNamedPitch returns false for Pitch objects', function () use ($C) {
         expect(Pitch::isNamedPitch($C))->toBeFalse();

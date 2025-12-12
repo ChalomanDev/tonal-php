@@ -8,19 +8,19 @@ describe('Interval', function () {
     test('properties', function () {
         $interval = Interval::get('P4');
 
-        expect($interval->alt)->toBe(0);
-        expect($interval->chroma)->toBe(5);
-        expect($interval->coord)->toBe([-1, 1]);
-        expect($interval->dir)->toBe(1);
-        expect($interval->empty)->toBeFalse();
-        expect($interval->name)->toBe('4P');
-        expect($interval->num)->toBe(4);
-        expect($interval->oct)->toBe(0);
-        expect($interval->q)->toBe('P');
-        expect($interval->semitones)->toBe(5);
-        expect($interval->simple)->toBe(4);
-        expect($interval->step)->toBe(3);
-        expect($interval->type->value)->toBe('perfectable');
+        expect($interval->alt)->toBe(0)
+            ->and($interval->chroma)->toBe(5)
+            ->and($interval->coord)->toBe([-1, 1])
+            ->and($interval->dir)->toBe(1)
+            ->and($interval->empty)->toBeFalse()
+            ->and($interval->name)->toBe('4P')
+            ->and($interval->num)->toBe(4)
+            ->and($interval->oct)->toBe(0)
+            ->and($interval->q)->toBe('P')
+            ->and($interval->semitones)->toBe(5)
+            ->and($interval->simple)->toBe(4)
+            ->and($interval->step)->toBe(3)
+            ->and($interval->type->value)->toBe('perfectable');
     });
 
     test('shorthand properties', function () {

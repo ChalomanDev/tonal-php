@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Chaloman\Tonal\DurationValue;
 
-describe('@tonaljs/duration-value', function () {
+describe('DurationValue', function () {
 
     test('get shorthand', function () {
         $result = DurationValue::get('q');

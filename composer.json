@@ -1,5 +1,5 @@
 {
-    "name": "chaloman/tonal",
+    "name": "chaloman/tonal-php",
     "description": "Paquete tonal",
     "type": "library",
     "require-dev": {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Chaloman\Tonal\Pitch;
 use Chaloman\Tonal\PitchNote;
 
-describe('note', function () {
+describe('PitchNote', function () {
 
     test('tokenize', function () {
         expect(PitchNote::tokenizeNote('Cbb5 major'))->toBe(['C', 'bb', '5', 'major']);

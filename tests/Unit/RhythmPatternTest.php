@@ -14,7 +14,7 @@ function sequential(float $start, float $step): callable
     };
 }
 
-describe('rhythm-pattern', function () {
+describe('RhythmPattern', function () {
 
     test('generates binary rhythms', function () {
         expect(RhythmPattern::binary(13))->toBe([1, 1, 0, 1]);

@@ -10,7 +10,7 @@ function split(string $str): array
     return explode(' ', $str);
 }
 
-describe('@tonaljs/collection', function () {
+describe('Collection', function () {
 
     test('range ascending', function () {
         expect(Collection::range(-2, 2))->toBe([-2, -1, 0, 1, 2]);

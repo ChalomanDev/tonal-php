@@ -6,7 +6,7 @@ use Chaloman\Tonal\Direction;
 use Chaloman\Tonal\Pitch;
 use Chaloman\Tonal\PitchInterval;
 
-describe('interval', function () {
+describe('PitchInterval', function () {
 
     test('tokenize', function () {
         expect(PitchInterval::tokenizeInterval('-2M'))->toBe(['-2', 'M']);
