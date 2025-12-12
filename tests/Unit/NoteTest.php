@@ -96,7 +96,7 @@ describe('Note', function () {
         expect(Note::enharmonic('B#4'))->toBe('C5');
 
         $notes = explode(' ', 'C## C### F##4 Gbbb5 B#4 Cbb4');
-        expect(array_map(fn($n) => Note::enharmonic($n), $notes))
+        expect(array_map(fn ($n) => Note::enharmonic($n), $notes))
             ->toBe(explode(' ', 'D Eb G4 E5 C5 A#3'));
 
         expect(Note::enharmonic('x'))->toBe('');
@@ -110,21 +110,21 @@ describe('Note', function () {
         expect(Note::transposeFifths('G4', 3))->toBe('E6');
         expect(Note::transposeFifths('G', 3))->toBe('E');
 
-        $ns = array_map(fn($n) => Note::transposeFifths('C2', $n), [0, 1, 2, 3, 4, 5]);
+        $ns = array_map(fn ($n) => Note::transposeFifths('C2', $n), [0, 1, 2, 3, 4, 5]);
         expect($ns)->toBe(['C2', 'G2', 'D3', 'A3', 'E4', 'B4']);
 
-        $sharps = array_map(fn($n) => Note::transposeFifths('F#', $n), [0, 1, 2, 3, 4, 5, 6]);
+        $sharps = array_map(fn ($n) => Note::transposeFifths('F#', $n), [0, 1, 2, 3, 4, 5, 6]);
         expect($sharps)->toBe(['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']);
 
-        $flats = array_map(fn($n) => Note::transposeFifths('Bb', $n), [0, -1, -2, -3, -4, -5, -6]);
+        $flats = array_map(fn ($n) => Note::transposeFifths('Bb', $n), [0, -1, -2, -3, -4, -5, -6]);
         expect($flats)->toBe(['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']);
     });
 
     test('transposeOctaves', function () {
-        $up = array_map(fn($oct) => Note::transposeOctaves('C4', $oct), [0, 1, 2, 3, 4]);
+        $up = array_map(fn ($oct) => Note::transposeOctaves('C4', $oct), [0, 1, 2, 3, 4]);
         expect(implode(' ', $up))->toBe('C4 C5 C6 C7 C8');
 
-        $down = array_map(fn($oct) => Note::transposeOctaves('C4', $oct), [-1, -2, -3, -4, -5]);
+        $down = array_map(fn ($oct) => Note::transposeOctaves('C4', $oct), [-1, -2, -3, -4, -5]);
         expect(implode(' ', $down))->toBe('C3 C2 C1 C0 C-1');
     });
 

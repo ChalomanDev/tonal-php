@@ -3,7 +3,8 @@
     "description": "Paquete tonal",
     "type": "library",
     "require-dev": {
-        "pestphp/pest": "4.x-dev"
+        "pestphp/pest": "4.x-dev",
+        "laravel/pint": "dev-main"
     },
     "license": "MIT",
     "autoload": {
@@ -23,10 +24,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "lint": "pint",
+        "lint:test": "pint --test"
     }
 }

@@ -23,7 +23,8 @@ final class ScaleObject
         public readonly array $notes,
         /** @var array<string> */
         public readonly array $intervals,
-    ) {}
+    ) {
+    }
 
     /**
      * Convert to array for testing/serialization
@@ -127,7 +128,7 @@ final class Scale
         $type = $st->name;
 
         $notes = $tonicName !== ''
-            ? array_map(fn(string $i) => PitchDistance::transpose($tonicName, $i), $st->intervals)
+            ? array_map(fn (string $i) => PitchDistance::transpose($tonicName, $i), $st->intervals)
             : [];
 
         $name = $tonicName !== '' ? $tonicName . ' ' . $type : $type;
@@ -217,10 +218,10 @@ final class Scale
 
         return array_values(array_filter(
             array_map(
-                fn(ChordType $chord) => $inScale($chord->chroma) ? ($chord->aliases[0] ?? '') : null,
-                ChordType::all()
+                fn (ChordType $chord) => $inScale($chord->chroma) ? ($chord->aliases[0] ?? '') : null,
+                ChordType::all(),
             ),
-            fn(?string $x) => $x !== null && $x !== ''
+            fn (?string $x) => $x !== null && $x !== '',
         ));
     }
 
@@ -245,10 +246,10 @@ final class Scale
 
         return array_values(array_filter(
             array_map(
-                fn(ScaleType $scale) => $isSuperset($scale->chroma) ? $scale->name : null,
-                ScaleType::all()
+                fn (ScaleType $scale) => $isSuperset($scale->chroma) ? $scale->name : null,
+                ScaleType::all(),
             ),
-            fn(?string $x) => $x !== null
+            fn (?string $x) => $x !== null,
         ));
     }
 
@@ -273,10 +274,10 @@ final class Scale
 
         return array_values(array_filter(
             array_map(
-                fn(ScaleType $scale) => $isSubset($scale->chroma) ? $scale->name : null,
-                ScaleType::all()
+                fn (ScaleType $scale) => $isSubset($scale->chroma) ? $scale->name : null,
+                ScaleType::all(),
             ),
-            fn(?string $x) => $x !== null
+            fn (?string $x) => $x !== null,
         ));
     }
 
@@ -293,7 +294,7 @@ final class Scale
     public static function scaleNotes(array $notes): array
     {
         $pcset = array_values(array_filter(
-            array_map(fn(string $n) => PitchNote::note($n)->pc, $notes)
+            array_map(fn (string $n) => PitchNote::note($n)->pc, $notes),
         ));
 
         if (empty($pcset)) {
@@ -371,7 +372,7 @@ final class Scale
             }
 
             return array_values(array_filter(
-                array_map($getName, Collection::range($from, $to))
+                array_map($getName, Collection::range($from, $to)),
             ));
         };
     }
@@ -390,7 +391,7 @@ final class Scale
         $scale = self::get($scaleName);
         $transpose = PitchDistance::tonicIntervalsTransposer($scale->intervals, $scale->tonic);
 
-        return fn(int $degree): string =>
+        return fn (int $degree): string =>
             $degree !== 0 ? $transpose($degree > 0 ? $degree - 1 : $degree) : '';
     }
 
@@ -423,10 +424,10 @@ final class Scale
             : self::get($scale)->notes;
 
         if (empty($names)) {
-            return fn(string|int $noteOrMidi): ?string => null;
+            return fn (string|int $noteOrMidi): ?string => null;
         }
 
-        $chromas = array_map(fn(string $name) => PitchNote::note($name)->chroma, $names);
+        $chromas = array_map(fn (string $name) => PitchNote::note($name)->chroma, $names);
 
         return function (string|int $noteOrMidi) use ($names, $chromas): ?string {
             $currNote = is_int($noteOrMidi)

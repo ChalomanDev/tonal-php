@@ -38,7 +38,8 @@ final class ScaleType
         public readonly array $intervals,
         /** @var array<string> */
         public readonly array $aliases,
-    ) {}
+    ) {
+    }
 
     /**
      * Get a scale type by name, alias, chroma, or setNum
@@ -61,7 +62,7 @@ final class ScaleType
     {
         self::ensureInitialized();
 
-        return array_map(fn(self $scale) => $scale->name, self::$dictionary);
+        return array_map(fn (self $scale) => $scale->name, self::$dictionary);
     }
 
     /**

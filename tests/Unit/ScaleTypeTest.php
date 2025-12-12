@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\ScaleType;
 use Chaloman\Tonal\Pcset;
+use Chaloman\Tonal\ScaleType;
 
 beforeEach(function () {
     // Reset the dictionary before each test
@@ -73,7 +73,7 @@ describe('ScaleType', function () {
 
     test('major modes', function () {
         $chromas = Pcset::modes(ScaleType::get('major')->intervals, true);
-        $names = array_map(fn($chroma) => ScaleType::get($chroma)->name, $chromas);
+        $names = array_map(fn ($chroma) => ScaleType::get($chroma)->name, $chromas);
 
         expect($names)->toBe([
             'major',
@@ -88,7 +88,7 @@ describe('ScaleType', function () {
 
     test('harmonic minor modes', function () {
         $chromas = Pcset::modes(ScaleType::get('harmonic minor')->intervals, true);
-        $names = array_map(fn($chroma) => ScaleType::get($chroma)->name, $chromas);
+        $names = array_map(fn ($chroma) => ScaleType::get($chroma)->name, $chromas);
 
         expect($names)->toBe([
             'harmonic minor',
@@ -103,7 +103,7 @@ describe('ScaleType', function () {
 
     test('melodic minor modes', function () {
         $chromas = Pcset::modes(ScaleType::get('melodic minor')->intervals, true);
-        $names = array_map(fn($chroma) => ScaleType::get($chroma)->name, $chromas);
+        $names = array_map(fn ($chroma) => ScaleType::get($chroma)->name, $chromas);
 
         expect($names)->toBe([
             'melodic minor',

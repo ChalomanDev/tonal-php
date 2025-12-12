@@ -99,8 +99,8 @@ final class Voicing
             // Transpose intervals relative to first interval (e.g., 3m 5P > 1P 3M)
             $firstInterval = $voicingIntervals[0];
             $relativeIntervals = array_map(
-                fn(string $interval): string => Interval::subtract($interval, $firstInterval) ?? '',
-                $voicingIntervals
+                fn (string $interval): string => Interval::subtract($interval, $firstInterval) ?? '',
+                $voicingIntervals,
             );
 
             // Get enharmonically correct pitch class for the bottom note
@@ -133,8 +133,8 @@ final class Voicing
             // Build voicings from each valid start note
             foreach ($starts as $start) {
                 $voicing = array_map(
-                    fn(string $interval): string => Note::transpose($start, $interval),
-                    $relativeIntervals
+                    fn (string $interval): string => Note::transpose($start, $interval),
+                    $relativeIntervals,
                 );
                 $result[] = $voicing;
             }

@@ -37,7 +37,7 @@ final class Progression
 
                 return $transposed . $rn->chordType;
             },
-            $chords
+            $chords,
         );
     }
 
@@ -68,7 +68,7 @@ final class Progression
 
                 return $roman->name . $chordType;
             },
-            $chords
+            $chords,
         );
     }
 }

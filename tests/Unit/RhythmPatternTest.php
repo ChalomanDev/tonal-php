@@ -39,7 +39,7 @@ describe('rhythm-pattern', function () {
     });
 
     test('generates probabilistic patterns', function () {
-        $rnd = fn() => 0.5;
+        $rnd = fn () => 0.5;
         expect(RhythmPattern::probability([0.5, 0.2, 0, 1, 0], $rnd))->toBe([1, 0, 0, 1, 0]);
     });
 

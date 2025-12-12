@@ -92,7 +92,7 @@ final class RhythmPattern
      */
     public static function random(int $length, float $probability = 0.5, ?callable $rnd = null): array
     {
-        $rnd = $rnd ?? fn() => mt_rand() / mt_getrandmax();
+        $rnd = $rnd ?? fn () => mt_rand() / mt_getrandmax();
         $pattern = [];
 
         for ($i = 0; $i < $length; $i++) {
@@ -113,11 +113,11 @@ final class RhythmPattern
      */
     public static function probability(array $probabilities, ?callable $rnd = null): array
     {
-        $rnd = $rnd ?? fn() => mt_rand() / mt_getrandmax();
+        $rnd = $rnd ?? fn () => mt_rand() / mt_getrandmax();
 
         return array_map(
-            fn($p) => $rnd() <= $p ? 1 : 0,
-            $probabilities
+            fn ($p) => $rnd() <= $p ? 1 : 0,
+            $probabilities,
         );
     }
 

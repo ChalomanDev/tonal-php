@@ -39,7 +39,7 @@ describe('@tonaljs/collection', function () {
     });
 
     test('shuffle with deterministic random', function () {
-        $rnd = fn() => 0.2;
+        $rnd = fn () => 0.2;
         expect(Collection::shuffle(split('a b c d'), $rnd))->toBe(['b', 'c', 'd', 'a']);
     });
 

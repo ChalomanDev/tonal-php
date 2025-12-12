@@ -34,12 +34,12 @@ final class Note
 
         return array_values(
             array_map(
-                fn(PitchNote $n) => $n->name,
+                fn (PitchNote $n) => $n->name,
                 array_filter(
-                    array_map(fn($item) => is_string($item) ? PitchNote::note($item) : PitchNote::note(''), $array),
-                    fn(PitchNote $n) => !$n->empty
-                )
-            )
+                    array_map(fn ($item) => is_string($item) ? PitchNote::note($item) : PitchNote::note(''), $array),
+                    fn (PitchNote $n) => !$n->empty,
+                ),
+            ),
         );
     }
 
@@ -228,7 +228,7 @@ final class Note
      */
     public static function transposeBy(string $interval): callable
     {
-        return fn(string $note): string => self::transpose($note, $interval);
+        return fn (string $note): string => self::transpose($note, $interval);
     }
 
     /**
@@ -250,7 +250,7 @@ final class Note
      */
     public static function transposeFrom(string $note): callable
     {
-        return fn(string $interval): string => self::transpose($note, $interval);
+        return fn (string $interval): string => self::transpose($note, $interval);
     }
 
     /**
@@ -300,7 +300,7 @@ final class Note
      */
     public static function ascending(): callable
     {
-        return fn(PitchNote $a, PitchNote $b): int => $a->height - $b->height;
+        return fn (PitchNote $a, PitchNote $b): int => $a->height - $b->height;
     }
 
     /**
@@ -310,7 +310,7 @@ final class Note
      */
     public static function descending(): callable
     {
-        return fn(PitchNote $a, PitchNote $b): int => $b->height - $a->height;
+        return fn (PitchNote $a, PitchNote $b): int => $b->height - $a->height;
     }
 
     /**
@@ -329,7 +329,7 @@ final class Note
         $parsed = self::onlyNotes($notes);
         usort($parsed, $comparator);
 
-        return array_map(fn(PitchNote $n) => $n->name, $parsed);
+        return array_map(fn (PitchNote $n) => $n->name, $parsed);
     }
 
     /**
@@ -346,7 +346,7 @@ final class Note
         $sorted = self::sortedNames($notes, self::ascending());
 
         return array_values(
-            array_filter($sorted, fn($n, $i) => $i === 0 || $n !== $sorted[$i - 1], ARRAY_FILTER_USE_BOTH)
+            array_filter($sorted, fn ($n, $i) => $i === 0 || $n !== $sorted[$i - 1], ARRAY_FILTER_USE_BOTH),
         );
     }
 
@@ -441,11 +441,11 @@ final class Note
         return array_values(
             array_filter(
                 array_map(
-                    fn($item) => is_string($item) ? PitchNote::note($item) : PitchNote::note(''),
-                    $array
+                    fn ($item) => is_string($item) ? PitchNote::note($item) : PitchNote::note(''),
+                    $array,
                 ),
-                fn(PitchNote $n) => !$n->empty
-            )
+                fn (PitchNote $n) => !$n->empty,
+            ),
         );
     }
 }

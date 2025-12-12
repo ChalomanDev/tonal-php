@@ -34,22 +34,22 @@ describe('Mode', function () {
         });
 
         test('setNum', function () {
-            $pcsets = array_map(fn($name) => Mode::get($name)->setNum, Mode::names());
+            $pcsets = array_map(fn ($name) => Mode::get($name)->setNum, Mode::names());
             expect($pcsets)->toBe([2773, 2902, 3418, 2741, 2774, 2906, 3434]);
         });
 
         test('alt', function () {
-            $alt = array_map(fn($name) => Mode::get($name)->alt, Mode::names());
+            $alt = array_map(fn ($name) => Mode::get($name)->alt, Mode::names());
             expect($alt)->toBe([0, 2, 4, -1, 1, 3, 5]);
         });
 
         test('triad', function () {
-            $triads = array_map(fn($name) => Mode::get($name)->triad, Mode::names());
+            $triads = array_map(fn ($name) => Mode::get($name)->triad, Mode::names());
             expect($triads)->toBe(['', 'm', 'm', '', '', 'm', 'dim']);
         });
 
         test('seventh', function () {
-            $sevenths = array_map(fn($name) => Mode::get($name)->seventh, Mode::names());
+            $sevenths = array_map(fn ($name) => Mode::get($name)->seventh, Mode::names());
             expect($sevenths)->toBe(['Maj7', 'm7', 'm7', 'Maj7', '7', 'm7', 'm7b5']);
         });
 

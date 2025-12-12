@@ -68,8 +68,8 @@ final class Pitch
     {
         if (!isset(self::$stepsToOcts)) {
             self::$stepsToOcts = array_map(
-                fn(int $fifths): int => (int) floor(($fifths * 7) / 12),
-                self::FIFTHS
+                fn (int $fifths): int => (int) floor(($fifths * 7) / 12),
+                self::FIFTHS,
             );
         }
     }

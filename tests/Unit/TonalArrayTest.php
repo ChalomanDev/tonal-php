@@ -46,7 +46,7 @@ describe('TonalArray', function () {
     });
 
     test('shuffle with deterministic random', function () {
-        $rnd = fn() => 0.2;
+        $rnd = fn () => 0.2;
         expect(TonalArray::shuffle(['a', 'b', 'c', 'd'], $rnd))
             ->toBe(['b', 'c', 'd', 'a']);
     });

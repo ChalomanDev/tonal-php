@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\ChordType;
 use Chaloman\Tonal\ChordQuality;
-use Chaloman\Tonal\PitchInterval;
+use Chaloman\Tonal\ChordType;
 use Chaloman\Tonal\Data\ChordTypeData;
+use Chaloman\Tonal\PitchInterval;
 
 beforeEach(function () {
     // Reset the dictionary before each test
@@ -110,7 +110,7 @@ describe('ChordType', function () {
 describe('ChordType data validation', function () {
     test('no repeated intervals in data', function () {
         $data = ChordTypeData::getData();
-        $intervals = array_map(fn($d) => $d[0], $data);
+        $intervals = array_map(fn ($d) => $d[0], $data);
         sort($intervals);
 
         for ($i = 1; $i < count($intervals); $i++) {
@@ -132,14 +132,14 @@ describe('ChordType data validation', function () {
         foreach ($data as $chord) {
             $intervalNames = explode(' ', $chord[0]);
             $semitones = array_map(
-                fn($i) => PitchInterval::interval($i)->semitones,
-                $intervalNames
+                fn ($i) => PitchInterval::interval($i)->semitones,
+                $intervalNames,
             );
 
             for ($i = 1; $i < count($semitones); $i++) {
                 expect($semitones[$i - 1])->toBeLessThan(
                     $semitones[$i],
-                    "Chord '{$chord[1]}' has intervals not in ascending order: {$chord[0]}"
+                    "Chord '{$chord[1]}' has intervals not in ascending order: {$chord[0]}",
                 );
             }
         }

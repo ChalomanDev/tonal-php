@@ -38,7 +38,7 @@ final class VoiceLeading
         };
 
         // Sort voicings by difference and return the one with the smallest difference
-        usort($voicings, fn(array $a, array $b): int => $diff($a) - $diff($b));
+        usort($voicings, fn (array $a, array $b): int => $diff($a) - $diff($b));
 
         return $voicings[0];
     }

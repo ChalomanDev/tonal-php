@@ -2,17 +2,14 @@
 
 declare(strict_types=1);
 
-use Chaloman\Tonal\Tonal;
-use Chaloman\Tonal\PitchNote;
-use Chaloman\Tonal\PitchInterval;
-use Chaloman\Tonal\Chord;
 use Chaloman\Tonal\ChordObject;
-use Chaloman\Tonal\Scale;
-use Chaloman\Tonal\ScaleObject;
-use Chaloman\Tonal\Key;
 use Chaloman\Tonal\MajorKey;
 use Chaloman\Tonal\MinorKey;
+use Chaloman\Tonal\PitchInterval;
+use Chaloman\Tonal\PitchNote;
 use Chaloman\Tonal\RomanNumeral;
+use Chaloman\Tonal\ScaleObject;
+use Chaloman\Tonal\Tonal;
 
 describe('Tonal', function () {
     describe('version', function () {

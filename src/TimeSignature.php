@@ -47,7 +47,8 @@ final class TimeSignature
         public readonly ?int $lower,
         public readonly ?TimeSignatureType $type,
         public readonly array $additive,
-    ) {}
+    ) {
+    }
 
     /**
      * Get common time signature names

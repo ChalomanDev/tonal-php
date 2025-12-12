@@ -141,8 +141,8 @@ final class AbcNotation
         return self::scientificToAbcNotation(
             PitchDistance::transpose(
                 self::abcToScientificNotation($note),
-                $interval
-            )
+                $interval,
+            ),
         );
     }
 
@@ -160,7 +160,7 @@ final class AbcNotation
     {
         return PitchDistance::distance(
             self::abcToScientificNotation($from),
-            self::abcToScientificNotation($to)
+            self::abcToScientificNotation($to),
         );
     }
 }

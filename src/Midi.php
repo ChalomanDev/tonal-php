@@ -254,7 +254,7 @@ final class Midi
      */
     private static function pcsetFromMidi(array $midi): array
     {
-        $chromas = array_map(fn($m) => self::chroma($m), $midi);
+        $chromas = array_map(fn ($m) => self::chroma($m), $midi);
         sort($chromas);
 
         return array_values(array_unique($chromas));

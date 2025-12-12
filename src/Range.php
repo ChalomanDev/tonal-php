@@ -31,8 +31,8 @@ final class Range
 
         // Convert notes to MIDI numbers
         $midi = Collection::compact(array_map(
-            fn(string|int $note): ?int => is_int($note) ? $note : Midi::toMidi($note),
-            $notes
+            fn (string|int $note): ?int => is_int($note) ? $note : Midi::toMidi($note),
+            $notes,
         ));
 
         // Check if all notes were valid
@@ -68,8 +68,8 @@ final class Range
     public static function chromatic(array $notes, array $options = []): array
     {
         return array_map(
-            fn(int $midi): string => Midi::midiToNoteName($midi, $options),
-            self::numeric($notes)
+            fn (int $midi): string => Midi::midiToNoteName($midi, $options),
+            self::numeric($notes),
         );
     }
 }

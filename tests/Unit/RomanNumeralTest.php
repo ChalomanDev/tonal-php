@@ -39,34 +39,34 @@ describe('RomanNumeral', function () {
     test('RomanNumeral is compatible with PitchInterval', function () {
         // Natural intervals
         $naturals = array_map(
-            fn($s) => PitchInterval::interval($s),
-            explode(' ', '1P 2M 3M 4P 5P 6M 7M')
+            fn ($s) => PitchInterval::interval($s),
+            explode(' ', '1P 2M 3M 4P 5P 6M 7M'),
         );
         $romanNames = array_map(
-            fn($ivl) => RomanNumeral::get($ivl)->name,
-            $naturals
+            fn ($ivl) => RomanNumeral::get($ivl)->name,
+            $naturals,
         );
         expect($romanNames)->toBe(explode(' ', 'I II III IV V VI VII'));
 
         // Flat intervals
         $flats = array_map(
-            fn($s) => PitchInterval::interval($s),
-            explode(' ', '1d 2m 3m 4d 5d 6m 7m')
+            fn ($s) => PitchInterval::interval($s),
+            explode(' ', '1d 2m 3m 4d 5d 6m 7m'),
         );
         $romanFlats = array_map(
-            fn($ivl) => RomanNumeral::get($ivl)->name,
-            $flats
+            fn ($ivl) => RomanNumeral::get($ivl)->name,
+            $flats,
         );
         expect($romanFlats)->toBe(explode(' ', 'bI bII bIII bIV bV bVI bVII'));
 
         // Sharp intervals
         $sharps = array_map(
-            fn($s) => PitchInterval::interval($s),
-            explode(' ', '1A 2A 3A 4A 5A 6A 7A')
+            fn ($s) => PitchInterval::interval($s),
+            explode(' ', '1A 2A 3A 4A 5A 6A 7A'),
         );
         $romanSharps = array_map(
-            fn($ivl) => RomanNumeral::get($ivl)->name,
-            $sharps
+            fn ($ivl) => RomanNumeral::get($ivl)->name,
+            $sharps,
         );
         expect($romanSharps)->toBe(explode(' ', '#I #II #III #IV #V #VI #VII'));
     });
@@ -84,8 +84,8 @@ describe('RomanNumeral', function () {
 
     test('step is correct', function () {
         $steps = array_map(
-            fn($name) => RomanNumeral::get($name)->step,
-            RomanNumeral::names()
+            fn ($name) => RomanNumeral::get($name)->step,
+            RomanNumeral::names(),
         );
         expect($steps)->toBe([0, 1, 2, 3, 4, 5, 6]);
     });
@@ -99,16 +99,16 @@ describe('RomanNumeral', function () {
         expect(RomanNumeral::get('IIIMaj7')->roman)->toBe('III');
 
         $romanNames = array_map(
-            fn($x) => RomanNumeral::get($x)->name,
-            RomanNumeral::names()
+            fn ($x) => RomanNumeral::get($x)->name,
+            RomanNumeral::names(),
         );
         expect($romanNames)->toBe(RomanNumeral::names());
     });
 
     test('create from degrees', function () {
         $names = array_map(
-            fn($i) => RomanNumeral::get($i - 1)->name,
-            [1, 2, 3, 4, 5, 6, 7]
+            fn ($i) => RomanNumeral::get($i - 1)->name,
+            [1, 2, 3, 4, 5, 6, 7],
         );
         expect($names)->toBe(RomanNumeral::names());
     });

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Chaloman\Tonal\Chord;
 use Chaloman\Tonal\Key;
 use Chaloman\Tonal\Scale;
-use Chaloman\Tonal\Chord;
 
 describe('Key', function () {
     test('majorTonicFromKeySignature', function () {
@@ -17,20 +17,20 @@ describe('Key', function () {
 
     test('major keySignature', function () {
         $tonics = explode(' ', 'C D E F G A B');
-        $signatures = array_map(fn($t) => Key::majorKey($t)->keySignature, $tonics);
+        $signatures = array_map(fn ($t) => Key::majorKey($t)->keySignature, $tonics);
         expect(implode(' ', $signatures))->toBe(' ## #### b # ### #####');
     });
 
     test('minor keySignature', function () {
         $tonics = explode(' ', 'C D E F G A B');
-        $signatures = array_map(fn($t) => Key::minorKey($t)->keySignature, $tonics);
+        $signatures = array_map(fn ($t) => Key::minorKey($t)->keySignature, $tonics);
         expect(implode(' ', $signatures))->toBe('bbb b # bbbb bb  ##');
     });
 
     describe('scale names', function () {
         test('natural scales', function () {
             $chordScales = Key::minorKey('C')->natural->chordScales;
-            $scaleNames = array_map(fn($cs) => Scale::get($cs)->name, $chordScales);
+            $scaleNames = array_map(fn ($cs) => Scale::get($cs)->name, $chordScales);
             expect($scaleNames)->toBe([
                 'C minor',
                 'D locrian',
@@ -44,7 +44,7 @@ describe('Key', function () {
 
         test('harmonic scales', function () {
             $chordScales = Key::minorKey('C')->harmonic->chordScales;
-            $scaleNames = array_map(fn($cs) => Scale::get($cs)->name, $chordScales);
+            $scaleNames = array_map(fn ($cs) => Scale::get($cs)->name, $chordScales);
             expect($scaleNames)->toBe([
                 'C harmonic minor',
                 'D locrian 6',
@@ -58,7 +58,7 @@ describe('Key', function () {
 
         test('melodic scales', function () {
             $chordScales = Key::minorKey('C')->melodic->chordScales;
-            $scaleNames = array_map(fn($cs) => Scale::get($cs)->name, $chordScales);
+            $scaleNames = array_map(fn ($cs) => Scale::get($cs)->name, $chordScales);
             expect($scaleNames)->toBe([
                 'C melodic minor',
                 'D dorian b2',

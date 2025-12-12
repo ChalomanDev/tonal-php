@@ -6,7 +6,7 @@ use Chaloman\Tonal\Progression;
 
 describe('Progression', function () {
     test('fromRomanNumerals', function () {
-        $inC = fn(array $chords) => Progression::fromRomanNumerals('C', $chords);
+        $inC = fn (array $chords) => Progression::fromRomanNumerals('C', $chords);
 
         expect($inC(explode(' ', 'I IIm7 V7')))->toBe(explode(' ', 'C Dm7 G7'));
         expect($inC(explode(' ', 'Imaj7 2 IIIm7')))->toBe(['Cmaj7', '', 'Em7']);

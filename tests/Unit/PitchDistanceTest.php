@@ -13,8 +13,8 @@ describe('PitchDistance::transpose', function () {
     test('transposes multiple notes', function () {
         $notes = ['C', 'D', 'E', 'F', 'G'];
         $transposed = array_map(
-            fn($pc) => PitchDistance::transpose($pc, '3M'),
-            $notes
+            fn ($pc) => PitchDistance::transpose($pc, '3M'),
+            $notes,
         );
         expect($transposed)->toBe(['E', 'F#', 'G#', 'A', 'B']);
     });
@@ -59,16 +59,16 @@ describe('PitchDistance::distance', function () {
         expect(PitchDistance::distance('C', 'D'))->toBe('2M');
 
         // From C
-        $fromC = fn($notes) => implode(' ', array_map(
-            fn($n) => PitchDistance::distance('C', $n),
-            explode(' ', $notes)
+        $fromC = fn ($notes) => implode(' ', array_map(
+            fn ($n) => PitchDistance::distance('C', $n),
+            explode(' ', $notes),
         ));
         expect($fromC('c d e f g a b'))->toBe('1P 2M 3M 4P 5P 6M 7M');
 
         // From G
-        $fromG = fn($notes) => implode(' ', array_map(
-            fn($n) => PitchDistance::distance('G', $n),
-            explode(' ', $notes)
+        $fromG = fn ($notes) => implode(' ', array_map(
+            fn ($n) => PitchDistance::distance('G', $n),
+            explode(' ', $notes),
         ));
         expect($fromG('c d e f g a b'))->toBe('4P 5P 6M 7m 1P 2M 3M');
     });

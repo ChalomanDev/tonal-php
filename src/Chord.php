@@ -28,7 +28,8 @@ final class ChordObject
         public readonly array $notes,
         /** @var array<string> */
         public readonly array $intervals,
-    ) {}
+    ) {
+    }
 
     /**
      * Convert to array for testing/serialization
@@ -163,7 +164,7 @@ final class Chord
     public static function getChord(
         string $typeName,
         ?string $optionalTonic = null,
-        ?string $optionalBass = null
+        ?string $optionalBass = null,
     ): ChordObject {
         $type = ChordType::get($typeName);
         $tonic = PitchNote::note($optionalTonic ?? '');
@@ -203,7 +204,7 @@ final class Chord
 
         $notes = $tonic->empty
             ? []
-            : array_map(fn(string $i) => PitchDistance::transpose($tonic->pc, $i), $intervals);
+            : array_map(fn (string $i) => PitchDistance::transpose($tonic->pc, $i), $intervals);
 
         $typeNameFinal = in_array($typeName, $type->aliases, true) ? $typeName : ($type->aliases[0] ?? '');
         $symbol = ($tonic->empty ? '' : $tonic->pc) . $typeNameFinal .
@@ -275,10 +276,10 @@ final class Chord
 
         return array_values(array_filter(
             array_map(
-                fn(ScaleType $scale) => $isChordIncluded($scale->chroma) ? $scale->name : null,
-                ScaleType::all()
+                fn (ScaleType $scale) => $isChordIncluded($scale->chroma) ? $scale->name : null,
+                ScaleType::all(),
             ),
-            fn(?string $x) => $x !== null
+            fn (?string $x) => $x !== null,
         ));
     }
 
@@ -303,10 +304,10 @@ final class Chord
 
         return array_values(array_filter(
             array_map(
-                fn(ChordType $chord) => $isSuperset($chord->chroma) ? $s->tonic . ($chord->aliases[0] ?? '') : null,
-                ChordType::all()
+                fn (ChordType $chord) => $isSuperset($chord->chroma) ? $s->tonic . ($chord->aliases[0] ?? '') : null,
+                ChordType::all(),
             ),
-            fn(?string $x) => $x !== null
+            fn (?string $x) => $x !== null,
         ));
     }
 
@@ -331,10 +332,10 @@ final class Chord
 
         return array_values(array_filter(
             array_map(
-                fn(ChordType $chord) => $isSubset($chord->chroma) ? $s->tonic . ($chord->aliases[0] ?? '') : null,
-                ChordType::all()
+                fn (ChordType $chord) => $isSubset($chord->chroma) ? $s->tonic . ($chord->aliases[0] ?? '') : null,
+                ChordType::all(),
             ),
-            fn(?string $x) => $x !== null
+            fn (?string $x) => $x !== null,
         ));
     }
 
@@ -354,7 +355,7 @@ final class Chord
             return [];
         }
 
-        return array_map(fn(string $ivl) => PitchDistance::transpose($note, $ivl), $chord->intervals);
+        return array_map(fn (string $ivl) => PitchDistance::transpose($note, $ivl), $chord->intervals);
     }
 
     /**
@@ -373,7 +374,7 @@ final class Chord
         $note = $tonic ?? $chord->tonic;
         $transpose = PitchDistance::tonicIntervalsTransposer($chord->intervals, $note);
 
-        return fn(int $degree): string =>
+        return fn (int $degree): string =>
             $degree !== 0 ? $transpose($degree > 0 ? $degree - 1 : $degree) : '';
     }
 

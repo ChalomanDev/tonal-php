@@ -42,7 +42,8 @@ final class PitchNote
         public readonly array $coord,
         public readonly ?int $midi,
         public readonly ?float $freq,
-    ) {}
+    ) {
+    }
 
     /**
      * Convert step number to letter

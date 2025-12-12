@@ -51,7 +51,8 @@ final class ChordType
         public readonly ChordQuality $quality,
         /** @var array<string> */
         public readonly array $aliases,
-    ) {}
+    ) {
+    }
 
     /**
      * Get a chord type by name, alias, chroma, or setNum
@@ -75,7 +76,7 @@ final class ChordType
         self::ensureInitialized();
 
         return array_values(array_filter(
-            array_map(fn(self $chord) => $chord->name, self::$dictionary)
+            array_map(fn (self $chord) => $chord->name, self::$dictionary),
         ));
     }
 
@@ -89,7 +90,7 @@ final class ChordType
         self::ensureInitialized();
 
         return array_values(array_filter(
-            array_map(fn(self $chord) => $chord->aliases[0] ?? '', self::$dictionary)
+            array_map(fn (self $chord) => $chord->aliases[0] ?? '', self::$dictionary),
         ));
     }
 
@@ -217,7 +218,7 @@ final class ChordType
         }
 
         // Sort by setNum
-        usort(self::$dictionary, fn(self $a, self $b) => $a->setNum <=> $b->setNum);
+        usort(self::$dictionary, fn (self $a, self $b) => $a->setNum <=> $b->setNum);
     }
 
     /**
@@ -227,7 +228,7 @@ final class ChordType
      */
     private static function getQuality(array $intervals): ChordQuality
     {
-        $has = fn(string $interval): bool => in_array($interval, $intervals, true);
+        $has = fn (string $interval): bool => in_array($interval, $intervals, true);
 
         if ($has('5A')) {
             return ChordQuality::Augmented;

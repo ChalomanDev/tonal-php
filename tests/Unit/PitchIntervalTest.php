@@ -42,9 +42,9 @@ describe('interval', function () {
         });
 
         test('name', function () {
-            $names = fn(string $src) => implode(' ', array_map(
-                fn($s) => PitchInterval::interval($s)->name,
-                explode(' ', $src)
+            $names = fn (string $src) => implode(' ', array_map(
+                fn ($s) => PitchInterval::interval($s)->name,
+                explode(' ', $src),
             ));
 
             expect($names('1P 2M 3M 4P 5P 6M 7M'))->toBe('1P 2M 3M 4P 5P 6M 7M');
@@ -56,9 +56,9 @@ describe('interval', function () {
         });
 
         test('q', function () {
-            $q = fn(string $str) => array_map(
-                fn($i) => PitchInterval::interval($i)->q,
-                explode(' ', $str)
+            $q = fn (string $str) => array_map(
+                fn ($i) => PitchInterval::interval($i)->q,
+                explode(' ', $str),
             );
 
             expect($q('1dd 1d 1P 1A 1AA'))->toBe(['dd', 'd', 'P', 'A', 'AA']);
@@ -66,18 +66,18 @@ describe('interval', function () {
         });
 
         test('alt', function () {
-            $alt = fn(string $str) => array_map(
-                fn($i) => PitchInterval::interval($i)->alt,
-                explode(' ', $str)
+            $alt = fn (string $str) => array_map(
+                fn ($i) => PitchInterval::interval($i)->alt,
+                explode(' ', $str),
             );
 
             expect($alt('1dd 2dd 3dd 4dd'))->toBe([-2, -3, -3, -2]);
         });
 
         test('simple', function () {
-            $simple = fn(string $str) => array_map(
-                fn($i) => PitchInterval::interval($i)->simple,
-                explode(' ', $str)
+            $simple = fn (string $str) => array_map(
+                fn ($i) => PitchInterval::interval($i)->simple,
+                explode(' ', $str),
             );
 
             expect($simple('1P 2M 3M 4P'))->toBe([1, 2, 3, 4]);

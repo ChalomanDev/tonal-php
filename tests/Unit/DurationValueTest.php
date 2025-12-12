@@ -39,28 +39,28 @@ describe('@tonaljs/duration-value', function () {
 
     test('value for duplex longa', function () {
         $expected = [8.0, 12.0, 14.0, 15.0];
-        $actual = array_map(fn($n) => DurationValue::value($n), ['dl', 'dl.', 'dl..', 'dl...']);
+        $actual = array_map(fn ($n) => DurationValue::value($n), ['dl', 'dl.', 'dl..', 'dl...']);
 
         expect($actual)->toBe($expected);
     });
 
     test('value for longa', function () {
         $expected = [4.0, 6.0, 7.0, 7.5];
-        $actual = array_map(fn($n) => DurationValue::value($n), ['l', 'l.', 'l..', 'l...']);
+        $actual = array_map(fn ($n) => DurationValue::value($n), ['l', 'l.', 'l..', 'l...']);
 
         expect($actual)->toBe($expected);
     });
 
     test('value for quarter', function () {
         $expected = [0.25, 0.375, 0.4375, 0.46875];
-        $actual = array_map(fn($n) => DurationValue::value($n), ['q', 'q.', 'q..', 'q...']);
+        $actual = array_map(fn ($n) => DurationValue::value($n), ['q', 'q.', 'q..', 'q...']);
 
         expect($actual)->toBe($expected);
     });
 
     test('fraction for whole note', function () {
         $expected = [[1, 1], [3, 2], [7, 4], [15, 8]];
-        $actual = array_map(fn($n) => DurationValue::fraction($n), ['w', 'w.', 'w..', 'w...']);
+        $actual = array_map(fn ($n) => DurationValue::fraction($n), ['w', 'w.', 'w..', 'w...']);
 
         expect($actual)->toBe($expected);
     });
@@ -75,7 +75,7 @@ describe('@tonaljs/duration-value', function () {
         $result = implode(',', DurationValue::names());
 
         expect($result)->toBe(
-            'large,duplex longa,maxima,octuple,octuple whole,long,longa,double whole,double,breve,whole,semibreve,half,minim,quarter,crotchet,eighth,quaver,sixteenth,semiquaver,thirty-second,demisemiquaver,sixty-fourth,hemidemisemiquaver,hundred twenty-eighth,two hundred fifty-sixth'
+            'large,duplex longa,maxima,octuple,octuple whole,long,longa,double whole,double,breve,whole,semibreve,half,minim,quarter,crotchet,eighth,quaver,sixteenth,semiquaver,thirty-second,demisemiquaver,sixty-fourth,hemidemisemiquaver,hundred twenty-eighth,two hundred fifty-sixth',
         );
     });
 

@@ -52,7 +52,7 @@ final class ChordDetect
     {
         // Get pitch classes from notes
         $notes = array_values(array_filter(
-            array_map(fn(string $n) => PitchNote::note($n)->pc, $source)
+            array_map(fn (string $n) => PitchNote::note($n)->pc, $source),
         ));
 
         if (empty($notes)) {
@@ -62,10 +62,10 @@ final class ChordDetect
         $found = self::findMatches($notes, 1.0, $options);
 
         // Filter, sort by weight descending, and extract names
-        $filtered = array_filter($found, fn(array $chord) => $chord['weight'] > 0);
-        usort($filtered, fn(array $a, array $b) => $b['weight'] <=> $a['weight']);
+        $filtered = array_filter($found, fn (array $chord) => $chord['weight'] > 0);
+        usort($filtered, fn (array $a, array $b) => $b['weight'] <=> $a['weight']);
 
-        return array_map(fn(array $chord) => $chord['name'], $filtered);
+        return array_map(fn (array $chord) => $chord['name'], $filtered);
     }
 
     /**
@@ -103,7 +103,7 @@ final class ChordDetect
                     }
 
                     return $chordType->chroma === $mode;
-                }
+                },
             );
 
             foreach ($chordTypes as $chordType) {
@@ -152,7 +152,7 @@ final class ChordDetect
             }
         }
 
-        return fn(int $chroma): ?string => $pcToName[$chroma] ?? null;
+        return fn (int $chroma): ?string => $pcToName[$chroma] ?? null;
     }
 
     /**

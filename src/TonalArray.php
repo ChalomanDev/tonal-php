@@ -35,10 +35,10 @@ final class TonalArray
         }
 
         // Sort by height
-        usort($valid, fn(PitchNote $a, PitchNote $b) => $a->height <=> $b->height);
+        usort($valid, fn (PitchNote $a, PitchNote $b) => $a->height <=> $b->height);
 
         // Return names
-        return array_map(fn(PitchNote $n) => $n->name, $valid);
+        return array_map(fn (PitchNote $n) => $n->name, $valid);
     }
 
     /**

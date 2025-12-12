@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Chaloman\Tonal\Core;
-use Chaloman\Tonal\Direction;
 use Chaloman\Tonal\Pitch;
 
 describe('Core', function () {

@@ -48,7 +48,7 @@ final class Collection
 
         return array_merge(
             array_slice($arr, $n),
-            array_slice($arr, 0, $n)
+            array_slice($arr, 0, $n),
         );
     }
 
@@ -63,7 +63,7 @@ final class Collection
      */
     public static function compact(array $arr): array
     {
-        return array_values(array_filter($arr, fn($n) => $n === 0 || $n));
+        return array_values(array_filter($arr, fn ($n) => $n === 0 || $n));
     }
 
     /**
@@ -78,7 +78,7 @@ final class Collection
      */
     public static function shuffle(array $arr, ?callable $rnd = null): array
     {
-        $rnd = $rnd ?? fn() => mt_rand() / mt_getrandmax();
+        $rnd = $rnd ?? fn () => mt_rand() / mt_getrandmax();
         $result = array_values($arr);
         $m = count($result);
 

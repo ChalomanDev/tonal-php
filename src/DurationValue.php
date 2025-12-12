@@ -50,7 +50,8 @@ final class DurationValue
         public readonly string $dots,
         /** @var string[] */
         public readonly array $names,
-    ) {}
+    ) {
+    }
 
     /**
      * Initialize the values cache
@@ -109,7 +110,7 @@ final class DurationValue
     {
         self::init();
 
-        return array_map(fn($dur) => $dur['shorthand'], self::$values);
+        return array_map(fn ($dur) => $dur['shorthand'], self::$values);
     }
 
     /**
@@ -206,14 +207,14 @@ final class DurationValue
         }
 
         // Simplify the fraction
-        while ($numerator > 0 && $denominator > 0 && fmod($numerator, 2) == 0 && fmod($denominator, 2) == 0) {
+        while ($numerator > 0 && $denominator > 0 && fmod($numerator, 2) === 0.0 && fmod($denominator, 2) === 0.0) {
             $numerator /= 2;
             $denominator /= 2;
         }
 
         // Convert to int if possible
-        $num = fmod($numerator, 1) == 0 ? (int) $numerator : $numerator;
-        $den = fmod($denominator, 1) == 0 ? (int) $denominator : $denominator;
+        $num = fmod($numerator, 1) === 0.0 ? (int) $numerator : $numerator;
+        $den = fmod($denominator, 1) === 0.0 ? (int) $denominator : $denominator;
 
         return [$num, $den];
     }

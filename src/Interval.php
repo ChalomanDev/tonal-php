@@ -207,7 +207,7 @@ final class Interval
      */
     public static function addTo(string $interval): callable
     {
-        return fn(string $other): string => self::add($interval, $other);
+        return fn (string $other): string => self::add($interval, $other);
     }
 
     /**

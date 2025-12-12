@@ -23,7 +23,8 @@ final class ModeType
         public readonly array $aliases,
         /** @var array<string> */
         public readonly array $intervals,
-    ) {}
+    ) {
+    }
 
     /**
      * Convert to array for testing/serialization
@@ -79,7 +80,6 @@ final class Mode
     private static array $index = [];
 
     /**
-     * @var bool
      */
     private static bool $initialized = false;
 
@@ -135,7 +135,7 @@ final class Mode
     {
         self::ensureInitialized();
 
-        return array_map(fn(ModeType $mode) => $mode->name, self::$modes);
+        return array_map(fn (ModeType $mode) => $mode->name, self::$modes);
     }
 
     /**
@@ -158,8 +158,8 @@ final class Mode
         }
 
         return array_map(
-            fn(string $ivl) => PitchDistance::transpose($tonic, $ivl),
-            $mode->intervals
+            fn (string $ivl) => PitchDistance::transpose($tonic, $ivl),
+            $mode->intervals,
         );
     }
 
@@ -176,9 +176,9 @@ final class Mode
     public static function triads(string|ModeType|array $modeName, string $tonic): array
     {
         return self::chords(
-            array_map(fn(array $m) => $m[4], self::MODES),
+            array_map(fn (array $m) => $m[4], self::MODES),
             $modeName,
-            $tonic
+            $tonic,
         );
     }
 
@@ -195,9 +195,9 @@ final class Mode
     public static function seventhChords(string|ModeType|array $modeName, string $tonic): array
     {
         return self::chords(
-            array_map(fn(array $m) => $m[5], self::MODES),
+            array_map(fn (array $m) => $m[5], self::MODES),
             $modeName,
-            $tonic
+            $tonic,
         );
     }
 
@@ -237,7 +237,7 @@ final class Mode
     public static function relativeTonic(
         string|ModeType|array $destination,
         string|ModeType|array $source,
-        string $tonic
+        string $tonic,
     ): string {
         return PitchDistance::transpose($tonic, self::distance($destination, $source));
     }
@@ -260,8 +260,8 @@ final class Mode
 
         $rotatedChords = Collection::rotate($mode->modeNum, $chordTypes);
         $tonics = array_map(
-            fn(string $i) => PitchDistance::transpose($tonic, $i),
-            $mode->intervals
+            fn (string $i) => PitchDistance::transpose($tonic, $i),
+            $mode->intervals,
         );
 
         $result = [];

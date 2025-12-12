@@ -33,7 +33,8 @@ final class KeyScale
         public readonly array $substituteDominants,
         /** @var array<string> */
         public readonly array $substituteDominantSupertonics,
-    ) {}
+    ) {
+    }
 
     /**
      * @deprecated use secondaryDominantSupertonics
@@ -87,7 +88,8 @@ final class MajorKey
         public readonly array $substituteDominants,
         /** @var array<string> */
         public readonly array $substituteDominantSupertonics,
-    ) {}
+    ) {
+    }
 
     /**
      * @deprecated use secondaryDominantSupertonics
@@ -122,7 +124,8 @@ final class MinorKey
         public readonly KeyScale $natural,
         public readonly KeyScale $harmonic,
         public readonly KeyScale $melodic,
-    ) {}
+    ) {
+    }
 }
 
 /**
@@ -136,7 +139,8 @@ final class KeyChord
     public function __construct(
         public readonly string $name,
         public array $roles = [],
-    ) {}
+    ) {
+    }
 }
 
 /**
@@ -294,16 +298,16 @@ final class Key
         array $triads,
         array $chordTypes,
         array $harmonicFunctions,
-        array $chordScalesData
+        array $chordScalesData,
     ): KeyScale {
         $intervals = array_map(
-            fn(string $gr) => RomanNumeral::get($gr)->interval,
-            $grades
+            fn (string $gr) => RomanNumeral::get($gr)->interval,
+            $grades,
         );
 
         $scale = array_map(
-            fn(string $interval) => Note::transpose($tonic, $interval),
-            $intervals
+            fn (string $interval) => Note::transpose($tonic, $interval),
+            $intervals,
         );
 
         $chords = self::mapScaleToType($scale, $chordTypes);
@@ -321,7 +325,7 @@ final class Key
                 return '';
             },
             $scale,
-            array_keys($scale)
+            array_keys($scale),
         );
 
         $secondaryDominantSupertonics = self::supertonics($secondaryDominants, $triads);
@@ -336,7 +340,7 @@ final class Key
 
                 return $subRoot . '7';
             },
-            $secondaryDominants
+            $secondaryDominants,
         );
 
         $substituteDominantSupertonics = self::supertonics($substituteDominants, $triads);
@@ -367,9 +371,9 @@ final class Key
     private static function mapScaleToType(array $scale, array $types, string $sep = ''): array
     {
         return array_map(
-            fn(string $note, int $i) => $note . $sep . ($types[$i] ?? ''),
+            fn (string $note, int $i) => $note . $sep . ($types[$i] ?? ''),
             $scale,
-            array_keys($scale)
+            array_keys($scale),
         );
     }
 
@@ -395,7 +399,7 @@ final class Key
                 return $isMinor ? $minorRoot . 'm7' : $minorRoot . 'm7b5';
             },
             $dominants,
-            array_keys($dominants)
+            array_keys($dominants),
         );
     }
 
@@ -410,7 +414,7 @@ final class Key
             explode(' ', ' m m   m dim'),
             explode(' ', 'maj7 m7 m7 maj7 7 m7 m7b5'),
             explode(' ', 'T SD T SD D T D'),
-            explode(',', 'major,dorian,phrygian,lydian,mixolydian,minor,locrian')
+            explode(',', 'major,dorian,phrygian,lydian,mixolydian,minor,locrian'),
         );
     }
 
@@ -425,7 +429,7 @@ final class Key
             explode(' ', 'm dim  m m  '),
             explode(' ', 'm7 m7b5 maj7 m7 m7 maj7 7'),
             explode(' ', 'T SD T SD D SD SD'),
-            explode(',', 'minor,locrian,major,dorian,phrygian,lydian,mixolydian')
+            explode(',', 'minor,locrian,major,dorian,phrygian,lydian,mixolydian'),
         );
     }
 
@@ -440,7 +444,7 @@ final class Key
             explode(' ', 'm dim aug m   dim'),
             explode(' ', 'mMaj7 m7b5 +maj7 m7 7 maj7 o7'),
             explode(' ', 'T SD T SD D SD D'),
-            explode(',', 'harmonic minor,locrian 6,major augmented,lydian diminished,phrygian dominant,lydian #9,ultralocrian')
+            explode(',', 'harmonic minor,locrian 6,major augmented,lydian diminished,phrygian dominant,lydian #9,ultralocrian'),
         );
     }
 
@@ -455,7 +459,7 @@ final class Key
             explode(' ', 'm m aug   dim dim'),
             explode(' ', 'm6 m7 +maj7 7 7 m7b5 m7b5'),
             explode(' ', 'T SD T SD D  '),
-            explode(',', 'melodic minor,dorian b2,lydian augmented,lydian dominant,mixolydian b6,locrian #2,altered')
+            explode(',', 'melodic minor,dorian b2,lydian augmented,lydian dominant,mixolydian b6,locrian #2,altered'),
         );
     }
 

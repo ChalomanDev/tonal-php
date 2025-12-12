@@ -42,7 +42,8 @@ final class RomanNumeral implements PitchLike
         public readonly int $alt,
         public readonly int $oct,
         public readonly int $dir,
-    ) {}
+    ) {
+    }
 
     /**
      * Get properties of a roman numeral string

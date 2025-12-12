@@ -45,7 +45,8 @@ final class Pcset
         public readonly string $normalized,
         /** @var array<string> */
         public readonly array $intervals,
-    ) {}
+    ) {
+    }
 
     /**
      * Get the pitch class set from various sources:
@@ -131,8 +132,8 @@ final class Pcset
         $pcset = self::get($set);
 
         return array_map(
-            fn(string $ivl) => PitchDistance::transpose('C', $ivl),
-            $pcset->intervals
+            fn (string $ivl) => PitchDistance::transpose('C', $ivl),
+            $pcset->intervals,
         );
     }
 
@@ -145,8 +146,8 @@ final class Pcset
     public static function chromas(): array
     {
         return array_map(
-            fn(int $n) => self::setNumToChroma($n),
-            Collection::range(2048, 4095)
+            fn (int $n) => self::setNumToChroma($n),
+            Collection::range(2048, 4095),
         );
     }
 
@@ -183,7 +184,6 @@ final class Pcset
      *
      * @param string|int|array<string>|self $s1
      * @param string|int|array<string>|self $s2
-     * @return bool
      */
     public static function isEqual(string|int|array|self $s1, string|int|array|self $s2): bool
     {
@@ -272,7 +272,7 @@ final class Pcset
     {
         $isIncluded = self::isNoteIncludedIn($set);
 
-        return fn(array $notes): array => array_values(array_filter($notes, $isIncluded));
+        return fn (array $notes): array => array_values(array_filter($notes, $isIncluded));
     }
 
     /**
@@ -418,7 +418,7 @@ final class Pcset
         $rotations = self::chromaRotations($chroma);
         $validRotations = array_filter(
             array_map([self::class, 'chromaToNumber'], $rotations),
-            fn(int $n) => $n >= 2048
+            fn (int $n) => $n >= 2048,
         );
 
         sort($validRotations);

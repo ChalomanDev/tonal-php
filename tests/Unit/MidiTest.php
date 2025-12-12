@@ -40,13 +40,13 @@ describe('midi', function () {
     test('midiToNoteName', function () {
         $notes = [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72];
 
-        expect(implode(' ', array_map(fn($m) => Midi::midiToNoteName($m), $notes)))
+        expect(implode(' ', array_map(fn ($m) => Midi::midiToNoteName($m), $notes)))
             ->toBe('C4 Db4 D4 Eb4 E4 F4 Gb4 G4 Ab4 A4 Bb4 B4 C5');
 
-        expect(implode(' ', array_map(fn($n) => Midi::midiToNoteName($n, ['sharps' => true]), $notes)))
+        expect(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['sharps' => true]), $notes)))
             ->toBe('C4 C#4 D4 D#4 E4 F4 F#4 G4 G#4 A4 A#4 B4 C5');
 
-        expect(implode(' ', array_map(fn($n) => Midi::midiToNoteName($n, ['pitchClass' => true]), $notes)))
+        expect(implode(' ', array_map(fn ($n) => Midi::midiToNoteName($n, ['pitchClass' => true]), $notes)))
             ->toBe('C Db D Eb E F Gb G Ab A Bb B C');
 
         expect(Midi::midiToNoteName(NAN))->toBe('');

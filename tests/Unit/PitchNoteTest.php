@@ -45,9 +45,9 @@ describe('note', function () {
         });
 
         test('height', function () {
-            $height = fn(string $str) => array_map(
-                fn($n) => PitchNote::note($n)->height,
-                explode(' ', $str)
+            $height = fn (string $str) => array_map(
+                fn ($n) => PitchNote::note($n)->height,
+                explode(' ', $str),
             );
 
             expect($height('C4 D4 E4 F4 G4'))->toBe([60, 62, 64, 65, 67]);
@@ -58,17 +58,17 @@ describe('note', function () {
 
             // Enharmonic equivalences
             expect($height('Cb4 Cbb4 Cbbb4 B#4 B##4 B###4'))->toBe(
-                $height('B3 Bb3 Bbb3 C5 C#5 C##5')
+                $height('B3 Bb3 Bbb3 C5 C#5 C##5'),
             );
             expect($height('Cb Cbb Cbbb B# B## B###'))->toBe(
-                $height('B Bb Bbb C C# C##')
+                $height('B Bb Bbb C C# C##'),
             );
         });
 
         test('midi', function () {
-            $midi = fn(string $str) => array_map(
-                fn($n) => PitchNote::note($n)->midi,
-                explode(' ', $str)
+            $midi = fn (string $str) => array_map(
+                fn ($n) => PitchNote::note($n)->midi,
+                explode(' ', $str),
             );
 
             expect($midi('C4 D4 E4 F4 G4'))->toBe([60, 62, 64, 65, 67]);

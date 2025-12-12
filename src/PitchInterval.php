@@ -84,7 +84,8 @@ final class PitchInterval
         public readonly int $chroma,
         public readonly array $coord,
         public readonly int $oct,
-    ) {}
+    ) {
+    }
 
     /**
      * Get interval properties from a string, Pitch, or PitchLike object
