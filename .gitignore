@@ -2,3 +2,16 @@
 composer.lock
 .phpunit.result.cache
 .phpunit.cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+*.cache

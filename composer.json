@@ -1,7 +1,23 @@
 {
     "name": "chaloman/tonal-php",
-    "description": "Paquete tonal",
+    "description": "PHP port of Tonal.js - A music theory library for notes, intervals, chords, scales, and more",
     "type": "library",
+    "keywords": [
+        "music",
+        "theory",
+        "notes",
+        "intervals",
+        "chords",
+        "scales",
+        "modes",
+        "keys",
+        "midi",
+        "tonal"
+    ],
+    "homepage": "https://github.com/ChalomanDev/tonal-php",
+    "require": {
+        "php": "^8.3"
+    },
     "require-dev": {
         "pestphp/pest": "^4.1",
         "laravel/pint": "^1.26",
@@ -24,6 +40,10 @@
             "email": "gonzarock@yahoo.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/ChalomanDev/tonal-php/issues",
+        "source": "https://github.com/ChalomanDev/tonal-php"
+    },
     "minimum-stability": "stable",
     "config": {
         "allow-plugins": {
